@@ -8,7 +8,7 @@ on:
   - workflow_dispatch
 
 jobs:
-  createCRAAndLintBuild:
+  LintBuild:
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Checkout repo
@@ -17,14 +17,9 @@ jobs:
         uses: actions/setup-node@8f152de45cc393bb48ce5d89d36b731f54556e65 # v4
         with:
           node-version: 20
-      - name: Create CRA from template
-        run: npx create-react-app my-app --template file:../cra-template-quentinvdr .
       - name: 📦 Install Dependencies
         run: npm install
-        working-directory: ./my-app
       - name: 🎨 Eslint
         run: npm run lint
-        working-directory: ./my-app
       - name: 📦 Build
         run: npm run build
-        working-directory: ./my-app
