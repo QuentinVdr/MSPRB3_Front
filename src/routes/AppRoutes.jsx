@@ -5,8 +5,6 @@ import Layout from './components/Layout';
 
 /**
  * Variable used to handle all the routes of the application
- *
- * @param queryClient queryClient
  */
 export const router = () =>
   createBrowserRouter(

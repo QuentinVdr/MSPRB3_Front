@@ -1,4 +1,5 @@
 const CACHE_NAME = 'your-app-name-cache-v1';
+// const urlsToCache = ['/', '/index.html', '/manifest.json', '/static/js/bundle.js', '/static/css/main.chunk.css'];
 const urlsToCache = ['/', '/index.html', '/manifest.json', '/static/js/bundle.js', '/static/css/main.chunk.css'];
 
 self.addEventListener('install', (event) => {
