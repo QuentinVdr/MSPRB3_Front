@@ -1,11 +1,10 @@
-import { HomeMapMarker } from '@components/home/homeMapMarker/HomeMapMarker';
+import HomeMapMarker from '@components/home/homeMapMarker/HomeMapMarker';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import { Button, Card, Grid, Stack, Typography } from '@mui/material';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useRef } from 'react';
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
-import MarkerClusterGroup from 'react-leaflet-cluster';
+import { MapContainer, TileLayer } from 'react-leaflet';
 import styles from './Home.module.scss';
 
 /**
@@ -57,13 +56,6 @@ export default function Home() {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           <HomeMapMarker plantes={plantes} />
-          <MarkerClusterGroup chunkedLoading maxClusterRadius={50}>
-            {plantes.map((plante) => (
-              <Marker position={L.latLng(plante.latitude, plante.longitude)} key={plante.id}>
-                <Popup>{plante.name}</Popup>
-              </Marker>
-            ))}
-          </MarkerClusterGroup>
         </MapContainer>
       </Grid>
     </Grid>

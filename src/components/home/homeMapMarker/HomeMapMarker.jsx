@@ -1,9 +1,14 @@
 import L from 'leaflet';
+import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { Marker, Popup, useMap } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
 
-export const HomeMapMarker = ({ plantes }) => {
+HomeMapMarker.propTypes = {
+  plantes: PropTypes.array.isRequired
+};
+
+export default function HomeMapMarker({ plantes }) {
   const mapRef = useMap();
 
   useEffect(() => {
@@ -11,7 +16,7 @@ export const HomeMapMarker = ({ plantes }) => {
   }, []);
 
   const mapBounds = () => {
-    var markerBounds = mapRef.getBounds();
+    let markerBounds = mapRef.getBounds();
 
     plantes.forEach((marker) => {
       markerBounds.extend([marker.latitude, marker.longitude]);
@@ -29,4 +34,4 @@ export const HomeMapMarker = ({ plantes }) => {
       ))}
     </MarkerClusterGroup>
   );
-};
+}
