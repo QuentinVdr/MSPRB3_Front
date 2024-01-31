@@ -1,5 +1,6 @@
 /* App */
-$app-page-padding: 32px;
+$navbar-height: 52px;
+$app-min-height: calc(100vh - $navbar-height);
 
 /* Alerting */
 $app-alert-icon-size: 18px;
@@ -13,6 +14,8 @@ $breakpoint-large: 1200px;
 $breakpoint-extra-large: 1536px;
 
 :export {
+  navbarHeight: $navbar-height;
+  appMinHeight: $app-min-height;
   appAlertIconSize: $app-alert-icon-size;
   appAlertIconMarginR: $app-alert-icon-margin-right;
   breakpointExtraSmall: $breakpoint-extra-small;

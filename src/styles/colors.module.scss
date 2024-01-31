@@ -1,19 +1,12 @@
 $primary: #225883;
 $primary-light: #397bb0;
-$not-provided-data: #787575;
 $grey-text: #757575;
 $white: #ffffff;
 $app-background: #fafafa;
 $default-font: #484848;
-$default-font-transparent: rgba(#484848d2, 0.8);
 $data-information: rgba(#000000, 0.6);
 $chips-background: #696d70;
 $list-item-border: #eeeeee;
-
-$blue-variant-dark: #2196f3;
-$blue-variant-extra-light: rgba($blue-variant-dark, 0.04);
-$blue-variant-light: rgba($blue-variant-dark, 0.08);
-$blue-variant-main: rgba($blue-variant-dark, 0.5);
 
 /** Scrollbar */
 $scrollbar-background-color: #19191e4d;
@@ -45,9 +38,6 @@ $alert-error-icon: $mui-error-main;
   primary: $primary;
   primaryLight: $primary-light;
 
-  blueVariantLight: $blue-variant-light;
-  blueVariantMain: $blue-variant-main;
-  blueVariantDark: $blue-variant-dark;
   defaultFont: $default-font;
   dataInformation: $data-information;
 

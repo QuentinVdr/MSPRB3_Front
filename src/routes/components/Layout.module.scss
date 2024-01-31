@@ -3,6 +3,6 @@
 @use '@styles/mixins.scss';
 
 .pageContainer {
-  min-height: 100vh;
+  padding-top: variables.$navbar-height;
   width: 100%;
 }
