@@ -1,25 +1,28 @@
+import FilterDrawer from '@components/home/filterDrawer/FilterDrawer';
 import HomeMapMarker from '@components/home/homeMapMarker/HomeMapMarker';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import { Button, Card, Grid, Stack, Typography } from '@mui/material';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { useRef } from 'react';
+import { useState } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import styles from './Home.module.scss';
+
+const plantes = [
+  { id: 1, name: 'omg plante', latitude: 47.216671, longitude: -1.56 },
+  { id: 2, name: 'plante ?', latitude: 47.216671, longitude: -1.55 },
+  { id: 3, name: 'végétal', latitude: 47.4, longitude: -1.54 },
+  { id: 4, name: 'weed', latitude: 47.4, longitude: -100 }
+];
 
 /**
  * Page that contains all the components displayed on the application homepage
  */
 export default function Home() {
-  const mapRef = useRef();
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+
   const defaultCenter = L.latLng(47.216671, -1.55);
   const minimalZoom = 13;
-  const plantes = [
-    { id: 1, name: 'omg plante', latitude: 47.216671, longitude: -1.56 },
-    { id: 2, name: 'plante ?', latitude: 47.216671, longitude: -1.55 },
-    { id: 3, name: 'végétal', latitude: 47.4, longitude: -1.54 },
-    { id: 4, name: 'weed', latitude: 47.4, longitude: -100 }
-  ];
 
   return (
     <Grid container direction="row" className={styles.homePage}>
@@ -27,9 +30,10 @@ export default function Home() {
         <Stack direction="row" justifyContent="space-between">
           <Typography variant="h2">Les plantes</Typography>
           <Stack alignItems="center" justifyContent="center">
-            <Button variant="outlined" startIcon={<FilterAltIcon />}>
+            <Button variant="outlined" startIcon={<FilterAltIcon />} onClick={() => setIsFilterOpen(true)}>
               Filtres
             </Button>
+            <FilterDrawer isOpen={isFilterOpen} closeDrawer={() => setIsFilterOpen(false)} />
           </Stack>
         </Stack>
         <Stack direction="column" gap={2}>
@@ -49,7 +53,6 @@ export default function Home() {
           center={defaultCenter}
           zoom={minimalZoom}
           placeholder={<Typography variant="body1">Ca charge, attend</Typography>}
-          ref={mapRef}
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
