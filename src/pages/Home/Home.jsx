@@ -4,11 +4,11 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useRef } from 'react';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
+import MarkerClusterGroup from 'react-leaflet-cluster';
 import styles from './Home.module.scss';
 
 /**
-* Page that contains all the components displayed on the application homepage
-
+ * Page that contains all the components displayed on the application homepage
  */
 export default function Home() {
   const mapRef = useRef();
@@ -47,13 +47,13 @@ export default function Home() {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          {/* <MarkerClusterGroup maxClusterRadius={50}> */}
-          {plantes.map((plante) => (
-            <Marker position={L.latLng(plante.latitude, plante.longitude)} key={plante.id}>
-              <Popup>{plante.name}</Popup>
-            </Marker>
-          ))}
-          {/* </MarkerClusterGroup> */}
+          <MarkerClusterGroup chunkedLoading maxClusterRadius={50}>
+            {plantes.map((plante) => (
+              <Marker position={L.latLng(plante.latitude, plante.longitude)} key={plante.id}>
+                <Popup>{plante.name}</Popup>
+              </Marker>
+            ))}
+          </MarkerClusterGroup>
         </MapContainer>
       </Grid>
     </Grid>
