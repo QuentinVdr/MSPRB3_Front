@@ -34,7 +34,7 @@ export default function Home() {
           <Typography variant="h3">plante</Typography>
           <Stack direction="column" gap={1}>
             {plantes.map((plante) => (
-              <Card variant="outlined" key={plante.key}>
+              <Card variant="outlined" key={`${plante.key} ${plante.name}`}>
                 <Typography variant="body1">{plante.name}</Typography>
               </Card>
             ))}
