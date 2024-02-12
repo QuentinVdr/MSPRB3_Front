@@ -1,5 +1,6 @@
 import { ReactQueryProvider } from '@contexts/ReactQueryProvider';
 import { ThemeProvider } from '@emotion/react';
+import AuthProvider from '@hooks/contexts/useAuth';
 import { CssBaseline } from '@mui/material';
 import { router } from '@routes/AppRoutes';
 import { theme } from '@styles/theme';
@@ -11,11 +12,13 @@ import { RouterProvider } from 'react-router-dom';
 export function App() {
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline>
-        <ReactQueryProvider>
-          <AppRouter />
-        </ReactQueryProvider>
-      </CssBaseline>
+      <AuthProvider>
+        <CssBaseline>
+          <ReactQueryProvider>
+            <AppRouter />
+          </ReactQueryProvider>
+        </CssBaseline>
+      </AuthProvider>
     </ThemeProvider>
   );
 }

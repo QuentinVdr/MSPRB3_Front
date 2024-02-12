@@ -37,8 +37,3 @@ export function ReactQueryProvider({ children }) {
     </QueryClientProvider>
   );
 }
-
-/** Define component props */
-ReactQueryProvider.propTypes = {
-  children: PropTypes.element.isRequired
-};
