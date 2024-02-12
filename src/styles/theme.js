@@ -37,14 +37,6 @@ export const theme = createTheme({
         }
       }
     },
-    MuiChip: {
-      styleOverrides: {
-        root: {
-          borderRadius: '6px',
-          backgroundColor: colors.blueVariantLight
-        }
-      }
-    },
     MuiAlert: {
       styleOverrides: {
         standardWarning: {
@@ -72,9 +64,9 @@ export const theme = createTheme({
           padding: '8px 22px'
         },
         outlinedPrimary: {
-          borderColor: colors.blueVariantMain,
+          borderColor: colors.primaryLight,
           '&:hover': {
-            borderColor: colors.blueVariantDark
+            borderColor: colors.primaryLight
           }
         }
       }
