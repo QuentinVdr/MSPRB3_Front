@@ -1,8 +1,5 @@
 @use '@styles/variables.module.scss';
 
 .navbar {
-  &:global(.MuiAppBar-root) {
-    height: variables.$navbar-height;
-    justify-content: center;
-  }
+  height: variables.$navbar-height;
 }
