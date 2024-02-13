@@ -1,4 +1,5 @@
 import SignInForm from '@components/auth/SignInForm/SignInForm';
+import SignUpForm from '@components/auth/SignUpForm/SignUpForm';
 import { Stack, Tab, Tabs } from '@mui/material';
 import { useState } from 'react';
 import styles from './Auth.module.scss';
@@ -18,7 +19,7 @@ export default function Auth() {
           <Tab label="inscription" value="sign-up" />
         </Tabs>
         {tab === 'sign-in' && <SignInForm />}
-        {tab === 'sign-up' && <div>TODO: Inscription</div>}
+        {tab === 'sign-up' && <SignUpForm />}
       </Stack>
     </div>
   );
