@@ -1,3 +1,4 @@
+import Auth from '@pages/Auth/Auth';
 import Home from '@pages/Home/Home';
 import { NotFound } from '@pages/NotFound/NotFound';
 import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
@@ -10,7 +11,8 @@ export const router = () =>
   createBrowserRouter(
     createRoutesFromElements(
       <Route element={<Layout />}>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Auth />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/not-found" element={<NotFound />} />
         {/** Unknown path redirection */}
         <Route path="*" element={<NotFound />} />
