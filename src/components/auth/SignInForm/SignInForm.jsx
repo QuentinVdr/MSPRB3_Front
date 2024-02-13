@@ -1,7 +1,7 @@
 import { Button, FormControl, Stack, TextField } from '@mui/material';
 import { Controller, useForm } from 'react-hook-form';
 
-export default function LoginForm() {
+export default function SignInForm() {
   const { handleSubmit, reset, control } = useForm();
 
   const onSubmitLogin = (data) => {
@@ -10,9 +10,9 @@ export default function LoginForm() {
   };
 
   return (
-    <Stack direction="column" gap={2}>
+    <Stack direction="column" gap={3}>
       <FormControl fullWidth variant="outlined">
-        <Stack direction="column" gap={1}>
+        <Stack direction="column" gap={2}>
           <Controller
             name="email"
             control={control}
