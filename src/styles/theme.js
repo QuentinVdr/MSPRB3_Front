@@ -24,7 +24,6 @@ export const theme = createTheme({
         root: {
           display: 'flex',
           alignItems: 'flex-start',
-
           '&.Mui-error::before': {
             content: '""',
             width: variables.appAlertIconSize,
@@ -62,12 +61,6 @@ export const theme = createTheme({
         root: {
           borderRadius: '37px',
           padding: '8px 22px'
-        },
-        outlinedPrimary: {
-          borderColor: colors.primaryLight,
-          '&:hover': {
-            borderColor: colors.primaryLight
-          }
         }
       }
     },
