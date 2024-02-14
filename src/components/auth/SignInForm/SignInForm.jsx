@@ -1,12 +1,23 @@
-import { Button, FormControl, Stack, TextField } from '@mui/material';
+import { useAuth } from '@hooks/contexts/useAuth';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { Button, FormControl, IconButton, InputAdornment, Stack, TextField } from '@mui/material';
+import { useSnackbarStore } from '@stores/SnackbarStore';
+import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 export default function SignInForm() {
   const { handleSubmit, reset, control } = useForm();
+  const { login } = useAuth();
+  const { showSuccess } = useSnackbarStore();
+  const [showPassword, setShowPassword] = useState(false);
 
-  const onSubmitLogin = (data) => {
+  const onSubmitLogin = (/** @type {{ email: string; password: string; }} */ data) => {
     const { email, password } = data;
-    console.log(`email: ${email}, password: ${password}`);
+    if (email === 'user@mail.com' && password === 'user') {
+      login();
+      console.log('🚀 ~ onSubmitLogin ~ login:');
+      showSuccess({ message: 'Connecter avec sucées' });
+    }
   };
 
   return (
@@ -39,8 +50,18 @@ export default function SignInForm() {
               <TextField
                 {...fieldState}
                 label="Mot de passe"
+                type={showPassword ? 'text' : 'password'}
                 error={!!error}
                 helperText={error ? error.message : null}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton onClick={() => setShowPassword((currentShow) => !currentShow)}>
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  )
+                }}
               />
             )}
           />
