@@ -1,6 +1,4 @@
 // NOTE: styles are included via {<link />} tag at {index.html}
-// @import "~leaflet/dist/leaflet.css";
-// @import "~react-leaflet-markercluster/dist/styles.min.css";
 @use '@styles/variables.module.scss';
 @use '@styles/fonts.module.scss';
 @use '@styles/colors.module.scss';
@@ -34,6 +32,13 @@ body {
 html {
   max-width: 100vw;
   scroll-behavior: smooth;
+}
+
+a {
+  color: inherit;
+  :hover {
+    text-decoration: underline;
+  }
 }
 
 // custom scrollbar for webkit (chrome, safari, opera)

@@ -1,7 +1,7 @@
 @use '@styles/variables.module.scss';
 
 .authPage {
-  height: variables.$app-min-height;
+  min-height: variables.$app-min-height;
   display: flex;
   justify-content: center;
   align-items: center;
