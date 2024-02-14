@@ -1,4 +1,4 @@
-import { AlertSnackbar } from '@components/global/Navbar/AlertSnackbar/AlertSnackbar';
+import { AlertSnackbar } from '@components/global/AlertSnackbar/AlertSnackbar';
 import { ReactQueryProvider } from '@contexts/ReactQueryProvider';
 import { ThemeProvider } from '@emotion/react';
 import AuthProvider from '@hooks/contexts/useAuth';
