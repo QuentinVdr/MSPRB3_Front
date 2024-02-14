@@ -9,16 +9,22 @@ import { useNavigate } from 'react-router-dom';
 export default function SignInForm() {
   const { login } = useAuth();
   const navigate = useNavigate();
-  const { showSuccess } = useSnackbarStore();
+  const { showSuccess, showError } = useSnackbarStore();
   const { handleSubmit, reset, control } = useForm();
   const [showPassword, setShowPassword] = useState(false);
 
-  const onSubmitLogin = (/** @type {{ email: string; password: string; }} */ data) => {
-    const { email, password } = data;
+  const onSubmitLogin = ({ email, password }) => {
     if (email === 'user@mail.com' && password === 'user') {
-      login();
+      login({ firstName: 'user', lastName: 'casual', mail: 'user@mail.com', isBotanist: false });
       showSuccess({ message: 'Connecter avec sucées' });
       navigate('/');
+    }
+    if (email === 'botanist@mail.com' && password === 'botanist') {
+      login({ firstName: 'user', lastName: 'botanist', mail: 'user@mail.com', isBotanist: true });
+      showSuccess({ message: 'Connecter avec sucées' });
+      navigate('/');
+    } else {
+      showError({ message: 'Identification invalide' });
     }
   };
 

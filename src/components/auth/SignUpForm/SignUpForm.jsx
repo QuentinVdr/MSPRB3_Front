@@ -1,12 +1,31 @@
-import { Button, Checkbox, FormControl, FormControlLabel, Stack, TextField } from '@mui/material';
+import { useAuth } from '@hooks/contexts/useAuth';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import {
+  Button,
+  Checkbox,
+  FormControl,
+  FormControlLabel,
+  IconButton,
+  InputAdornment,
+  Stack,
+  TextField
+} from '@mui/material';
+import { useSnackbarStore } from '@stores/SnackbarStore';
+import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 export default function SignUpForm() {
+  const { login } = useAuth();
+  const navigate = useNavigate();
+  const { showSuccess } = useSnackbarStore();
   const { handleSubmit, reset, control } = useForm();
+  const [showPassword, setShowPassword] = useState(false);
 
-  const onSubmitLogin = (data) => {
-    const { firstName, lastName, email, password, isBotanist } = data;
-    console.log('🚀 ~ onSubmitLogin ~ :', { firstName, lastName, email, password, isBotanist });
+  const onSubmitLogin = ({ firstName, lastName, email, isBotanist }) => {
+    login({ firstName, lastName, email, isBotanist });
+    showSuccess({ message: 'Compte créer avec sucées' });
+    navigate('/');
   };
 
   return (
@@ -63,6 +82,15 @@ export default function SignUpForm() {
                 label="Mot de passe"
                 error={!!error}
                 helperText={error ? error.message : null}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton onClick={() => setShowPassword((currentShow) => !currentShow)}>
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  )
+                }}
               />
             )}
           />

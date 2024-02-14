@@ -7,7 +7,7 @@ AuthProvider.propTypes = {
 
 /** A component that provides authentication context and state to its children. */
 export default function AuthProvider({ children }) {
-  const [user, setUser] = useState({ name: 'name', mail: 'mail', isBotanist: true });
+  const [user, setUser] = useState(null);
 
   /**
    * Return true if the user is authenticated and his allowed actions calculated, false otherwise
@@ -22,8 +22,8 @@ export default function AuthProvider({ children }) {
   /**
    * Get the current session
    */
-  const login = () => {
-    setUser({ name: 'name', mail: 'mail', isBotanist: true });
+  const login = (user) => {
+    setUser(user);
   };
 
   /**
