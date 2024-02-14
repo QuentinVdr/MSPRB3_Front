@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { createContext, useContext, useMemo, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 AuthProvider.propTypes = {
   children: PropTypes.element.isRequired
@@ -33,18 +33,9 @@ export default function AuthProvider({ children }) {
     setUser(null);
   };
 
-  const providedValuesMemo = useMemo(
-    () => ({
-      isAuthenticated,
-      user,
-      isBotanist,
-      login,
-      logout
-    }),
-    [user]
+  return (
+    <AuthContext.Provider value={{ isAuthenticated, user, isBotanist, login, logout }}>{children}</AuthContext.Provider>
   );
-
-  return <AuthContext.Provider value={providedValuesMemo}>{children}</AuthContext.Provider>;
 }
 
 /** A custom hook that provides access to the authentication context. */

@@ -4,19 +4,21 @@ import { Button, FormControl, IconButton, InputAdornment, Stack, TextField } fro
 import { useSnackbarStore } from '@stores/SnackbarStore';
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 export default function SignInForm() {
-  const { handleSubmit, reset, control } = useForm();
   const { login } = useAuth();
+  const navigate = useNavigate();
   const { showSuccess } = useSnackbarStore();
+  const { handleSubmit, reset, control } = useForm();
   const [showPassword, setShowPassword] = useState(false);
 
   const onSubmitLogin = (/** @type {{ email: string; password: string; }} */ data) => {
     const { email, password } = data;
     if (email === 'user@mail.com' && password === 'user') {
       login();
-      console.log('🚀 ~ onSubmitLogin ~ login:');
       showSuccess({ message: 'Connecter avec sucées' });
+      navigate('/');
     }
   };
 

@@ -2,9 +2,11 @@ import { useAuth } from '@hooks/contexts/useAuth';
 import { AccountCircle } from '@mui/icons-material';
 import { AppBar, IconButton, Menu, MenuItem, Stack, Typography } from '@mui/material';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './Navbar.module.scss';
 
 export default function Navbar() {
+  const navigate = useNavigate();
   const { isAuthenticated, logout } = useAuth();
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -19,6 +21,7 @@ export default function Navbar() {
   const handleLogout = () => {
     logout();
     handleCloseMenu();
+    navigate('/');
   };
 
   return (
