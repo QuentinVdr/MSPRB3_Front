@@ -6,7 +6,7 @@ import { useMemo } from 'react';
 
 /** Define component props */
 ReactQueryProvider.propTypes = {
-  children: PropTypes.element.isRequired
+  children: PropTypes.array.isRequired
 };
 
 /** Setup handle error for all request */

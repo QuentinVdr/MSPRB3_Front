@@ -39,7 +39,7 @@ export const useSnackbarStore = create((set, get) => ({
       unique: options.unique ?? true
     };
 
-    const { snackbarQueue } = get();
+    const snackbarQueue = get().snackbarQueue;
     const hasSameSnackbarInQueue = snackbarQueue.some((snackbarEntry) => isSnackbarEqual(snackbarEntry, newSnackbar));
     if (!newSnackbar.unique || !hasSameSnackbarInQueue) {
       set(() => ({ snackbarQueue: [...snackbarQueue, newSnackbar] }));

@@ -1,3 +1,4 @@
+import { AlertSnackbar } from '@components/global/Navbar/AlertSnackbar/AlertSnackbar';
 import { ReactQueryProvider } from '@contexts/ReactQueryProvider';
 import { ThemeProvider } from '@emotion/react';
 import AuthProvider from '@hooks/contexts/useAuth';
@@ -16,6 +17,7 @@ export function App() {
         <CssBaseline>
           <ReactQueryProvider>
             <AppRouter />
+            <AlertSnackbar />
           </ReactQueryProvider>
         </CssBaseline>
       </AuthProvider>
