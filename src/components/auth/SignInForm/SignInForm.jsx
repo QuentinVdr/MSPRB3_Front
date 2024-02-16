@@ -18,8 +18,7 @@ export default function SignInForm() {
       login({ firstName: 'user', lastName: 'casual', mail: 'user@mail.com', isBotanist: false });
       showSuccess({ message: 'Connecter avec sucées' });
       navigate('/');
-    }
-    if (email === 'botanist@mail.com' && password === 'botanist') {
+    } else if (email === 'botanist@mail.com' && password === 'botanist') {
       login({ firstName: 'user', lastName: 'botanist', mail: 'user@mail.com', isBotanist: true });
       showSuccess({ message: 'Connecter avec sucées' });
       navigate('/');
