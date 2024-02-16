@@ -30,7 +30,7 @@ export default function Navbar() {
         <Typography variant="h1">Aros&apos;aje</Typography>
         {isAuthenticated() && (
           <>
-            <Link to="/plant">
+            <Link to="/my-plant">
               <Typography variant="body1">Mes Plantes</Typography>
             </Link>
             <div className={styles.userMenu}>

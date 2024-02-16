@@ -16,7 +16,7 @@ export const router = () =>
         <Route path="/auth" element={<Auth />} />
         <Route element={<AuthRoute />}>
           <Route path="/" element={<Home />} />
-          <Route path="/plant" element={<Plant />} />
+          <Route path="/my-plant" element={<Plant />} />
           <Route path="/not-found" element={<NotFound />} />
           {/** Unknown path redirection */}
           <Route path="*" element={<NotFound />} />
