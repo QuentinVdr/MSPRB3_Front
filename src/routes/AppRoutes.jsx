@@ -1,7 +1,7 @@
 import Auth from '@pages/Auth/Auth';
 import Home from '@pages/Home/Home';
 import { NotFound } from '@pages/NotFound/NotFound';
-import Plant from '@pages/Plant/Plant';
+import MyPlant from '@pages/MyPlant/MyPlant';
 import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
 import AuthRoute from './accessHandler/AuthRoute';
 import Layout from './components/Layout';
@@ -17,7 +17,7 @@ export const router = () =>
         {/** page required authentification */}
         <Route element={<AuthRoute />}>
           <Route path="/" element={<Home />} />
-          <Route path="/my-plant" element={<Plant />} />
+          <Route path="/my-plant" element={<MyPlant />} />
         </Route>
         <Route path="/not-found" element={<NotFound />} />
         {/** Unknown path redirection */}

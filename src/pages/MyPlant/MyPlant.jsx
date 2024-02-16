@@ -3,7 +3,7 @@ import { plants } from '@pages/Home/Home';
 import { useState } from 'react';
 import styles from './Plant.module.scss';
 
-export default function Plant() {
+export default function MyPlant() {
   const [selectedPlant, setSelectedPlant] = useState(plants[0]);
 
   const addNewPlant = () => {
@@ -26,13 +26,13 @@ export default function Plant() {
               <Typography variant="body1">{plant.name}</Typography>
             </div>
           ))}
-          <Button variant="contained" onClick={addNewPlant}>
-            Ajouter une nouvelle place
-          </Button>
         </Stack>
+        <Button variant="contained" onClick={addNewPlant} className={styles.addPlantButton}>
+          Ajouter une nouvelle place
+        </Button>
       </Grid>
       <Grid item md={9} container direction="column" gap={2}>
-        <Typography variant="h2">Plantes detail</Typography>
+        <Typography variant="h2">Plante detail</Typography>
         <Stack direction="column" gap={2} className={styles.selectedPlantCard}>
           <Typography variant="h2">{selectedPlant.name}</Typography>
           <Grid container direction="row" spacing={1}>
