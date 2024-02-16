@@ -14,14 +14,14 @@ export const router = () =>
     createRoutesFromElements(
       <Route element={<Layout />}>
         <Route path="/auth" element={<Auth />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/not-found" element={<NotFound />} />
         {/** page required authentification */}
         <Route element={<AuthRoute />}>
+          <Route path="/" element={<Home />} />
           <Route path="/my-plant" element={<Plant />} />
-          {/** Unknown path redirection */}
-          <Route path="*" element={<NotFound />} />
         </Route>
+        <Route path="/not-found" element={<NotFound />} />
+        {/** Unknown path redirection */}
+        <Route path="*" element={<NotFound />} />
       </Route>
     )
   );
