@@ -2,4 +2,19 @@
 
 .plantPage {
   min-height: variables.$app-min-height;
+  padding: 1.5rem 2rem;
+
+  .myPlantsCard {
+    padding: 0.5rem 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+  }
+
+  .selectedPlantCard {
+    padding: 2rem 3rem;
+    border-radius: 24px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+  }
 }
