@@ -3,4 +3,8 @@
 .navbar {
   height: variables.$navbar-height;
   padding: 0 16px;
+
+  .userMenu {
+    margin-left: auto;
+  }
 }

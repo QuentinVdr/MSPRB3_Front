@@ -8,11 +8,43 @@ import { useState } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import styles from './Home.module.scss';
 
-const plantes = [
-  { id: 1, name: 'omg plante', latitude: 47.216671, longitude: -1.56 },
-  { id: 2, name: 'plante ?', latitude: 47.216671, longitude: -1.55 },
-  { id: 3, name: 'végétal', latitude: 47.4, longitude: -1.54 },
-  { id: 4, name: 'weed', latitude: 47.4, longitude: -100 }
+export const plants = [
+  {
+    id: 1,
+    name: 'omg plante',
+    description: 'description',
+    address: 'adresse de la plant',
+    city: 'ville',
+    latitude: 47.216671,
+    longitude: -1.56
+  },
+  {
+    id: 2,
+    name: 'plante ?',
+    description: 'description',
+    address: 'adresse de la plant',
+    city: 'ville',
+    latitude: 47.216671,
+    longitude: -1.55
+  },
+  {
+    id: 3,
+    name: 'végétal',
+    description: 'description',
+    address: 'adresse de la plant',
+    city: 'ville',
+    latitude: 47.4,
+    longitude: -1.54
+  },
+  {
+    id: 4,
+    name: 'weed',
+    description: 'description',
+    address: 'adresse de la plant',
+    city: 'ville',
+    latitude: 47.4,
+    longitude: -100
+  }
 ];
 
 /**
@@ -39,9 +71,9 @@ export default function Home() {
         <Stack direction="column" gap={2}>
           <Typography variant="h3">plante</Typography>
           <Stack direction="column" gap={1}>
-            {plantes.map((plante) => (
-              <Card variant="outlined" key={`${plante.key} ${plante.name}`}>
-                <Typography variant="body1">{plante.name}</Typography>
+            {plants.map((plant) => (
+              <Card variant="outlined" key={`${plant.key} ${plant.name}`}>
+                <Typography variant="body1">{plant.name}</Typography>
               </Card>
             ))}
           </Stack>
@@ -58,7 +90,7 @@ export default function Home() {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <HomeMapMarker plantes={plantes} />
+          <HomeMapMarker plantes={plants} />
         </MapContainer>
       </Grid>
     </Grid>

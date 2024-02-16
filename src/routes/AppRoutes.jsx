@@ -1,6 +1,7 @@
 import Auth from '@pages/Auth/Auth';
 import Home from '@pages/Home/Home';
 import { NotFound } from '@pages/NotFound/NotFound';
+import MyPlant from '@pages/MyPlant/MyPlant';
 import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
 import AuthRoute from './accessHandler/AuthRoute';
 import Layout from './components/Layout';
@@ -13,12 +14,14 @@ export const router = () =>
     createRoutesFromElements(
       <Route element={<Layout />}>
         <Route path="/auth" element={<Auth />} />
+        {/** page required authentification */}
         <Route element={<AuthRoute />}>
           <Route path="/" element={<Home />} />
-          <Route path="/not-found" element={<NotFound />} />
-          {/** Unknown path redirection */}
-          <Route path="*" element={<NotFound />} />
+          <Route path="/my-plant" element={<MyPlant />} />
         </Route>
+        <Route path="/not-found" element={<NotFound />} />
+        {/** Unknown path redirection */}
+        <Route path="*" element={<NotFound />} />
       </Route>
     )
   );
