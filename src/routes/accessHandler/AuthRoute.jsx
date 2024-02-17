@@ -1,5 +1,6 @@
 import { useAuth } from '@hooks/contexts/useAuth';
-import { Navigate, Outlet } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 /**
  * Component used to check if the user is authenticated
@@ -7,10 +8,22 @@ import { Navigate, Outlet } from 'react-router-dom';
  */
 const AuthRoute = () => {
   const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
 
-  if (!isAuthenticated()) {
-    return <Navigate to="/auth" />;
-  }
+  useEffect(() => {
+    let timeoutId;
+    if (!isAuthenticated()) {
+      timeoutId = setTimeout(() => {
+        navigate('/auth');
+      }, 100);
+    }
+    // Cleanup function to clear the timeout when the component unmounts
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, [isAuthenticated()]);
 
   return <Outlet />;
 };
