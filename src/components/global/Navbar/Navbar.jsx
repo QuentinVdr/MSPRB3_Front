@@ -27,7 +27,9 @@ export default function Navbar() {
   return (
     <AppBar className={styles.navbar} position="sticky">
       <Stack direction="row" gap={2} alignItems="center">
-        <Typography variant="h1">Aros&apos;aje</Typography>
+        <Link to="/">
+          <Typography variant="h1">Aros&apos;aje</Typography>
+        </Link>
         {isAuthenticated() && (
           <>
             <Link to="/my-plant">
