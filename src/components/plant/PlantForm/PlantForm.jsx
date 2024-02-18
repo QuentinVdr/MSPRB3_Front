@@ -132,7 +132,7 @@ export default function PlantForm({ afterValidation, afterCancel, defaultPlant }
           Annuler
         </Button>
         <Button variant="contained" onClick={handleSubmit(onSubmitPlant)}>
-          Créer
+          {defaultPlant ? 'Modifier' : 'Créer'}
         </Button>
       </Stack>
     </Grid>
