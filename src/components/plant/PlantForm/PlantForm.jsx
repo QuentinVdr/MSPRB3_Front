@@ -1,18 +1,31 @@
-import { Button, FormControl, Grid, Stack, TextField } from '@mui/material';
+import { Button, Checkbox, FormControl, FormControlLabel, Grid, Stack, TextField, Typography } from '@mui/material';
 import { useSnackbarStore } from '@stores/SnackbarStore';
 import PropTypes from 'prop-types';
 import { Controller, useForm } from 'react-hook-form';
 
 PlantForm.propTypes = {
   afterValidation: PropTypes.func,
-  afterCancel: PropTypes.func
+  afterCancel: PropTypes.func,
+  defaultPlant: PropTypes.object
 };
 
-export default function PlantForm({ afterValidation, afterCancel }) {
+export default function PlantForm({ afterValidation, afterCancel, defaultPlant }) {
   const { showSuccess } = useSnackbarStore();
-  const { handleSubmit, reset, control } = useForm();
+  const { handleSubmit, reset, control } = useForm({ defaultValues: defaultPlant });
 
-  const onSubmitPlant = () => {
+  const onSubmitPlant = ({ name, description, address, city, postalCode, isNeedingCare, isNeedingTips }) => {
+    console.log(
+      '🚀 ~ onSubmitPlant ~ { name, description, address, city, postalCode, isNeedingCare, isNeedingTips }:',
+      {
+        name,
+        description,
+        address,
+        city,
+        postalCode,
+        isNeedingCare,
+        isNeedingTips
+      }
+    );
     showSuccess({ message: 'Plante créer avec succès' });
     afterValidation();
   };
@@ -24,12 +37,12 @@ export default function PlantForm({ afterValidation, afterCancel }) {
 
   return (
     <Grid container direction="column" gap={3} justifyContent="center">
+      <Typography variant="h4">{defaultPlant ? `Modifier ${defaultPlant.name}` : 'Créer une plante'}</Typography>
       <FormControl fullWidth variant="outlined">
         <Stack direction="column" gap={2}>
           <Controller
             name="name"
             control={control}
-            defaultValue=""
             rules={{
               required: 'Requis'
             }}
@@ -45,7 +58,6 @@ export default function PlantForm({ afterValidation, afterCancel }) {
           <Controller
             name="description"
             control={control}
-            defaultValue=""
             render={({ field: fieldState, fieldState: { error } }) => (
               <TextField
                 {...fieldState}
@@ -60,7 +72,6 @@ export default function PlantForm({ afterValidation, afterCancel }) {
           <Controller
             name="address"
             control={control}
-            defaultValue=""
             rules={{
               required: 'Requis'
             }}
@@ -71,12 +82,46 @@ export default function PlantForm({ afterValidation, afterCancel }) {
           <Controller
             name="city"
             control={control}
-            defaultValue=""
             rules={{
               required: 'Requis'
             }}
             render={({ field: fieldState, fieldState: { error } }) => (
               <TextField {...fieldState} label="Ville" error={!!error} helperText={error ? error.message : null} />
+            )}
+          />
+          <Controller
+            name="postalCode"
+            control={control}
+            rules={{
+              required: 'Requis'
+            }}
+            render={({ field: fieldState, fieldState: { error } }) => (
+              <TextField
+                {...fieldState}
+                label="Code postal"
+                error={!!error}
+                helperText={error ? error.message : null}
+              />
+            )}
+          />
+          <Controller
+            name="isNeedingCare"
+            control={control}
+            render={({ field: fieldState }) => (
+              <FormControlLabel
+                label="A besoin de soin"
+                control={<Checkbox {...fieldState} checked={fieldState.value} />}
+              />
+            )}
+          />
+          <Controller
+            name="isNeedingTips"
+            control={control}
+            render={({ field: fieldState }) => (
+              <FormControlLabel
+                label="A besoin de conseil"
+                control={<Checkbox {...fieldState} checked={fieldState.value} />}
+              />
             )}
           />
         </Stack>

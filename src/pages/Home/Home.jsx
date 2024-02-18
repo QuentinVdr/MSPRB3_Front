@@ -11,39 +11,51 @@ import styles from './Home.module.scss';
 export const plants = [
   {
     id: 1,
-    name: 'omg plante',
-    description: 'description',
-    address: 'adresse de la plant',
-    city: 'ville',
-    latitude: 47.216671,
-    longitude: -1.56
+    name: 'Peace Lily',
+    description: 'A popular indoor plant',
+    address: '123 Green Street',
+    city: 'Plantville',
+    postalCode: '44001',
+    latitude: 47.216672,
+    longitude: -1.57,
+    isNeedingCare: false,
+    isNeedingTips: true
   },
   {
     id: 2,
-    name: 'plante ?',
-    description: 'description',
-    address: 'adresse de la plant',
-    city: 'ville',
-    latitude: 47.216671,
-    longitude: -1.55
+    name: 'Aloe Vera',
+    description: 'A plant with potential medicinal properties',
+    address: '123 Herbal Lane',
+    city: 'Herbville',
+    postalCode: '44001',
+    latitude: 47.216672,
+    longitude: -1.57,
+    isNeedingCare: false,
+    isNeedingTips: true
   },
   {
     id: 3,
-    name: 'végétal',
-    description: 'description',
-    address: 'adresse de la plant',
-    city: 'ville',
-    latitude: 47.4,
-    longitude: -1.54
+    name: 'Snake Plant',
+    description: 'A hardy indoor plant',
+    address: '456 Green Street',
+    city: 'Plantville',
+    postalCode: '44002',
+    latitude: 47.216673,
+    longitude: -1.58,
+    isNeedingCare: false,
+    isNeedingTips: false
   },
   {
     id: 4,
-    name: 'weed',
-    description: 'description',
-    address: 'adresse de la plant',
-    city: 'ville',
-    latitude: 47.4,
-    longitude: -100
+    name: 'Spider Plant',
+    description: 'A popular houseplant with striped leaves',
+    address: '789 Leafy Boulevard',
+    city: 'Greentown',
+    postalCode: '44003',
+    latitude: 47.216674,
+    longitude: -1.59,
+    isNeedingCare: true,
+    isNeedingTips: true
   }
 ];
 
