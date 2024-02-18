@@ -77,14 +77,14 @@ export default function MyPlant() {
               <Grid item xs={6}>
                 <Typography variant="body1">{selectedPlant.postalCode}</Typography>
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={12}>
                 <Typography variant="body1">
                   {selectedPlant.isNeedingCare
                     ? `${selectedPlant.name} a besoin de soin`
                     : `${selectedPlant.name} n'a pas besoin de soin`}
                 </Typography>
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={12}>
                 <Typography variant="body1">
                   {selectedPlant.isNeedingTips
                     ? `${selectedPlant.name} a besoin d'aide`
