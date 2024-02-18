@@ -1,3 +1,4 @@
+import { useAddressDetailQuery } from '@hooks/reactQuery/queries/useAddressQueries';
 import { Button, Checkbox, FormControl, FormControlLabel, Grid, Stack, TextField, Typography } from '@mui/material';
 import { useSnackbarStore } from '@stores/SnackbarStore';
 import PropTypes from 'prop-types';
@@ -10,22 +11,32 @@ PlantForm.propTypes = {
 };
 
 export default function PlantForm({ afterValidation, afterCancel, defaultPlant }) {
-  const { showSuccess } = useSnackbarStore();
-  const { handleSubmit, reset, control } = useForm({ defaultValues: defaultPlant });
+  const { showSuccess, showError } = useSnackbarStore();
+  const { handleSubmit, reset, control, getValues } = useForm({ defaultValues: defaultPlant });
+  const plantFullAddress = `${getValues().address} ${getValues().city} ${getValues().postalCode}`;
+  const { data: addressDetail, refetch: fetchAddressDetail } = useAddressDetailQuery(plantFullAddress, {
+    enabled: false,
+    onSuccess: () => handlePlantSave()
+  });
 
-  const onSubmitPlant = ({ name, description, address, city, postalCode, isNeedingCare, isNeedingTips }) => {
-    console.log(
-      '🚀 ~ onSubmitPlant ~ { name, description, address, city, postalCode, isNeedingCare, isNeedingTips }:',
-      {
-        name,
-        description,
-        address,
-        city,
-        postalCode,
-        isNeedingCare,
-        isNeedingTips
-      }
-    );
+  const onSubmitPlant = () => {
+    fetchAddressDetail()
+      .then(() => {
+        handlePlantSave();
+      })
+      .catch(() => {
+        showError({ message: "Une erreurs c'est produit lors de la récupération des détails de l'adresse" });
+      });
+  };
+
+  const handlePlantSave = () => {
+    const { lat, lon } = addressDetail.features[0].properties;
+    const plant = {
+      ...getValues(),
+      latitude: lat,
+      longitude: lon
+    };
+    console.log('🚀 ~ handlePlantSave ~ plant:', plant);
     showSuccess({ message: 'Plante créer avec succès' });
     afterValidation();
   };
