@@ -57,7 +57,7 @@ export default function MyPlant() {
             ))}
           </Stack>
           <Button variant="contained" onClick={handleOpen} className={styles.addPlantButton}>
-            Ajouter une nouvelle place
+            Ajouter une nouvelle plante
           </Button>
         </Grid>
         <Grid item md={9} container direction="column" gap={2}>
