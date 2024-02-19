@@ -7,8 +7,8 @@ export function NotFound() {
   const navigate = useNavigate();
 
   return (
-    <Box className={styles.container}>
-      <Stack alignItems="center" gap={2}>
+    <Box className={styles.notFoundPage}>
+      <Stack gap={2} className={styles.container}>
         <Typography variant="h1">Page indisponible</Typography>
         <Typography variant="h6">La page que vous essayez de consulter n&apos;existe pas ou a été supprimée</Typography>
         <Button variant="contained" endIcon={<ArrowForward />} onClick={() => navigate('/')}>
