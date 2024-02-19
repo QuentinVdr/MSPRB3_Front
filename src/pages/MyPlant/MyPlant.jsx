@@ -39,7 +39,7 @@ export default function MyPlant() {
               <Stack
                 key={`${plant.key} ${plant.name}`}
                 onClick={() => setSelectedPlant(plant)}
-                className={styles.myPlantsCard}
+                className={styles.myPlantsCard + (plant == selectedPlant ? ` ${styles.selectedPlantCard}` : '')}
                 direction="row"
                 justifyContent="space-between"
                 alignItems="center"
@@ -62,7 +62,7 @@ export default function MyPlant() {
         </Grid>
         <Grid item md={9} container direction="column" gap={2}>
           <Typography variant="h2">Plante detail</Typography>
-          <Stack direction="column" gap={2} className={styles.selectedPlantCard}>
+          <Stack direction="column" gap={2} className={styles.selectedPlantDetail}>
             <Typography variant="h2">{selectedPlant.name}</Typography>
             <Grid container direction="row" spacing={1}>
               <Grid item xs={12}>
