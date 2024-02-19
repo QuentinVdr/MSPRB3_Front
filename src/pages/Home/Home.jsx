@@ -59,9 +59,6 @@ export const plants = [
   }
 ];
 
-/**
- * Page that contains all the components displayed on the application homepage
- */
 export default function Home() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
