@@ -33,10 +33,10 @@ export default function Navbar() {
     <AppBar className={styles.navbar} position="sticky">
       <Stack direction="row" gap={2} alignItems="center">
         <Link to="/">
-          <Typography variant="h1">Aros&apos;aje</Typography>
+          <Typography variant="h1">Arosa&apos;je</Typography>
         </Link>
         {isAuthenticated() && (
-          <Link to="/my-plant">
+          <Link to="/my-plants">
             <Typography variant="body1">Mes Plantes</Typography>
           </Link>
         )}
