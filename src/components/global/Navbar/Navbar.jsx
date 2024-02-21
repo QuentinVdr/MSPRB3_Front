@@ -39,6 +39,9 @@ export default function Navbar() {
           <Link to="/my-plant">
             <Typography variant="body1">Mes Plantes</Typography>
           </Link>
+            <Link to="/articles">
+              <Typography variant="body1">Articles</Typography>
+            </Link>
         )}
         <div className={styles.userMenu}>
           <IconButton

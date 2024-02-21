@@ -1,0 +1,6 @@
+@use '@styles/variables.module.scss';
+
+.articlesPage {
+  height: variables.$app-min-height;
+  padding: 1.5rem 2rem;
+}
