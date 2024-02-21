@@ -24,6 +24,11 @@ export default function Navbar() {
     navigate('/');
   };
 
+  const handleLogin = () => {
+    handleCloseMenu();
+    navigate('/auth');
+  };
+
   return (
     <AppBar className={styles.navbar} position="sticky">
       <Stack direction="row" gap={2} alignItems="center">
@@ -31,27 +36,29 @@ export default function Navbar() {
           <Typography variant="h1">Aros&apos;aje</Typography>
         </Link>
         {isAuthenticated() && (
-          <>
-            <Link to="/my-plant">
-              <Typography variant="body1">Mes Plantes</Typography>
-            </Link>
-            <div className={styles.userMenu}>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleOpenMenu}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-              <Menu id="menu-appbar" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleCloseMenu}>
-                <MenuItem onClick={handleLogout}>déconnecter</MenuItem>
-              </Menu>
-            </div>
-          </>
+          <Link to="/my-plant">
+            <Typography variant="body1">Mes Plantes</Typography>
+          </Link>
         )}
+        <div className={styles.userMenu}>
+          <IconButton
+            size="large"
+            aria-label="account of current user"
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+            onClick={handleOpenMenu}
+            color="inherit"
+          >
+            <AccountCircle />
+          </IconButton>
+          <Menu id="menu-appbar" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleCloseMenu}>
+            {isAuthenticated() ? (
+              <MenuItem onClick={handleLogout}>déconnecter</MenuItem>
+            ) : (
+              <MenuItem onClick={handleLogin}>se connecter</MenuItem>
+            )}
+          </Menu>
+        </div>
       </Stack>
     </AppBar>
   );
