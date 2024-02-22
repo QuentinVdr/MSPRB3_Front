@@ -1,29 +1,29 @@
 # React Template
 
-Project create from quentinvdr's template for React school projects.
+Project front de la MSPR de 3ème année Arossa'je
 
-## Installation and Start
+## Installation et démarrage
 
-- Clone the project
-- Navigate to the project directory
-- Add .env file in the root directory (see .env.example)
-- Run these commands
+- Clone le project
+- Naviguer jusqu'au dossier du projet
+- Ajouter un fichier .env.local à la racine du projet (regarder .env)
+- Exécuté les commandes suivantes :
 
 ```bash
-# 📦 Install dependencies
+# 📦 Installer les dépendances
 npm install
 pnpm install
 yarn install
 
-# ▶️ Run development server
+# ▶️ Démarrez le serveur de développement
 npm run dev
-pnpm run dev
+pnpm dev
 yarn dev
 ```
 
-## Project Architecture
+## Architecture du Project
 
-This project follows a specific structure for organization and ease of navigation:
+Ce projet suit une structure spécifique pour l'organisation et la facilité de navigation :
 
 - 📁 `public`: This directory contains all static files like favicon, manifest, images, etc.
 - 📁 `src`: This is the main directory that contains the project source code. It includes:
@@ -45,35 +45,39 @@ This project follows a specific structure for organization and ease of navigatio
 
 ## Librairies
 
-### Technology stack :
+### Stack de Technologie utilisé:
 
 - Library/Framework JS : [React](https://reactjs.org/)
-- Langage : [JavaScript](https://developer.mozilla.org/fr/docs/Web/JavaScript)
-- Package Manager : [pnpm](https://pnpm.io/)
+- Language : [JavaScript](https://developer.mozilla.org/fr/docs/Web/JavaScript)
+- Gestionnaire de Package : [pnpm](https://pnpm.io/)
 - Builder : [Vite](https://vitejs.dev/)
 - Linter/Code formatter : [EsLint](https://eslint.org/) / [Prettier](https://prettier.io/)
 
 #### Librairie Majeur :
 
-Internalization :
+Gestionnaire des Data :
 
-- [i18next](https://www.i18next.com/)
-- [React-i18next](https://react.i18next.com/)
+- [React-Query](https://tanstack.com/query/v4/docs/react/overview) → Gestionnaire de données asynchrones et de mise en cache (Cache, gestion de l'état des Promesses, etc)
+- [Axios](https://axios-http.com/fr/docs/intro) → Client HTTP basé sur Promise pour communiquer avec la partie Back-end
 
-Data management :
+Gestionnaire de formulaire :
 
-- [React-Query](https://tanstack.com/query/v4/docs/react/overview) → Async data fetching and caching (Cache, Promise state management, etc)
-- [Axios](https://axios-http.com/fr/docs/intro) → HTTP client based on Promise to communicate with the Back-end part
+- [React-Hook-Form](https://react-hook-form.com/) → Librairie de gestion de formulaire
 
 Routing :
 
-- [React-router-dom](https://reactrouter.com/web/guides/quick-start) → Library used to manage routing and navigation between the pages of the application
+- [React-router-dom](https://reactrouter.com/web/guides/quick-start) → Libraire utilisée pour gérer le routage et la navigation entre les pages de l'application
 
 CSS :
 
-- [Material UI](https://mui.com/) → UI Library components
-- [Sass](https://sass-lang.com/) → CSS preprocessor that adds features to CSS. It allows, among other things, to better structure and simplify the code, to avoid repetitions, etc
+- [Material UI](https://mui.com/) → Librairie de composants UI React
+- [Sass](https://sass-lang.com/) → Préprocesseur CSS qui ajoute des fonctionnalités au CSS. Il permet, entre autres, de mieux structurer et simplifier le code, d'éviter les répétitions, etc
 
 Icons :
 
-- [Material Icons](https://mui.com/components/material-icons/) → Ready-to-use icon library
+- [Material Icons](https://mui.com/components/material-icons/) → Librairie d'icônes
+
+Map :
+
+- [Leaflet](https://leafletjs.com/) → Librairie de cartographie interactive
+- [React-Leaflet](https://react-leaflet.js.org/) → Wrapper de Leaflet pour React
