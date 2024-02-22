@@ -25,23 +25,19 @@ yarn dev
 
 Ce projet suit une structure spécifique pour l'organisation et la facilité de navigation :
 
-- 📁 `public`: This directory contains all static files like favicon, manifest, images, etc.
-- 📁 `src`: This is the main directory that contains the project source code. It includes:
-  - 📁 `api`: This directory contains all the requests (fetch).
-  - 📁 `components`: This directory contains all the React components (business logic). Each component has its own directory with the following structure:
-    - 📄 `{ComponentName}.jsx`: The main component file.
-    - 📄 `{ComponentName}.module.scss`: The component's style file, scoped to the component.
-  - 📁 `global`: This directory contains components used in multiple pages, such as headers & footers. Each global component has its own directory with the following structure:
-    - 📄 `{ComponentName}.jsx`: The main component file.
-    - 📄 `{ComponentName}.module.scss`: The component's style file, scoped to the component.
-  - 📁 `pages`: This directory contains React pages. The business logic is in the components.
-  - 📁 `routes`: This directory contains the routes (react-router).
-  - 📁 `stores`: This directory contains the store keys (react-query).
-  - 📁 `styles`: This directory contains global styles (variables, theme, etc.).
-  - 📁 `translations`: This directory contains translations (i18n).
-  - 📁 `utils`: This directory contains utilities (reusable functions, etc.).
-  - 📄 `main.jsx`: This is the main project file and the entry point of the project.
-- 📄 `package.json`: This is the project configuration file.
+- 📁 `public`: Dossier contenant les fichiers static comme favicon, manifest, images, etc.
+- 📁 `src`: Dossier contenant le code source du projet. Il inclue :
+  - 📁 `api`: Dossier contenant toutes les requêtes API. (axios)
+  - 📁 `components`: Dossier contenant toutes les composant React (logique métier). Chaque composant a sa propre architecture:
+    - 📄 `{ComponentName}.jsx`: Fichier principal du composent.
+    - 📄 `{ComponentName}.module.scss`: Fichier de styles du composent.
+  - 📁 `pages`: Dossier contenant les pages React.
+  - 📁 `routes`: Dossier contenant le paramétrages des routes (react-router).
+  - 📁 `stores`: Dossier contenant les stores et clé react-query.
+  - 📁 `styles`: Dossier contenant la définitions des styles globaux a l'application (variables, theme, etc.).
+  - 📁 `utils`: Dossier contenant les fonctions utiles.
+  - 📄 `main.jsx`: Fichier principal du projet et point d'entré du projet.
+- 📄 `package.json`: Fichier de configuration du projet.
 
 ## Librairies
 
