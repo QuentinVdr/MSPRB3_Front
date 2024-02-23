@@ -2,65 +2,16 @@ import FilterDrawer from '@components/home/filterDrawer/FilterDrawer';
 import HomeMapMarker from '@components/home/homeMapMarker/HomeMapMarker';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import { Button, Card, Grid, Stack, Typography } from '@mui/material';
+import { usePlantsStore } from '@stores/dataStore/PlantsStore';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useState } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import styles from './Home.module.scss';
 
-export const plants = [
-  {
-    id: 1,
-    name: 'Peace Lily',
-    description: 'A popular indoor plant',
-    address: '123 Green Street',
-    city: 'Plantville',
-    postalCode: '44001',
-    latitude: 47.216672,
-    longitude: -1.57,
-    isNeedingCare: false,
-    isNeedingTips: true
-  },
-  {
-    id: 2,
-    name: 'Aloe Vera',
-    description: 'A plant with potential medicinal properties',
-    address: '123 Herbal Lane',
-    city: 'Herbville',
-    postalCode: '44001',
-    latitude: 47.216672,
-    longitude: -1.57,
-    isNeedingCare: false,
-    isNeedingTips: true
-  },
-  {
-    id: 3,
-    name: 'Snake Plant',
-    description: 'A hardy indoor plant',
-    address: '456 Green Street',
-    city: 'Plantville',
-    postalCode: '44002',
-    latitude: 47.216673,
-    longitude: -1.58,
-    isNeedingCare: false,
-    isNeedingTips: false
-  },
-  {
-    id: 4,
-    name: 'Spider Plant',
-    description: 'A popular houseplant with striped leaves',
-    address: '789 Leafy Boulevard',
-    city: 'Greentown',
-    postalCode: '44003',
-    latitude: 47.216674,
-    longitude: -1.59,
-    isNeedingCare: true,
-    isNeedingTips: true
-  }
-];
-
 export default function Home() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const plants = usePlantsStore((state) => state.plants);
 
   const defaultCenter = L.latLng(47.216671, -1.55);
   const minimalZoom = 13;

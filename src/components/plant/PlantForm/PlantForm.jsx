@@ -1,6 +1,7 @@
 import { useAddressDetailQuery } from '@hooks/reactQuery/queries/useAddressQueries';
 import { Button, Checkbox, FormControl, FormControlLabel, Grid, Stack, TextField, Typography } from '@mui/material';
 import { useSnackbarStore } from '@stores/SnackbarStore';
+import { usePlantsStore } from '@stores/dataStore/PlantsStore';
 import PropTypes from 'prop-types';
 import { Controller, useForm } from 'react-hook-form';
 
@@ -11,6 +12,8 @@ PlantForm.propTypes = {
 };
 
 export default function PlantForm({ afterValidation, afterCancel, defaultPlant }) {
+  const addPlant = usePlantsStore((state) => state.addPlant);
+  const updatePlant = usePlantsStore((state) => state.updatePlant);
   const { showSuccess, showError } = useSnackbarStore();
   const { handleSubmit, reset, control, getValues } = useForm({ defaultValues: defaultPlant });
   const plantFullAddress = `${getValues().address} ${getValues().city} ${getValues().postalCode}`;
@@ -36,7 +39,7 @@ export default function PlantForm({ afterValidation, afterCancel, defaultPlant }
       latitude: lat,
       longitude: lon
     };
-    console.log('🚀 ~ handlePlantSave ~ plant:', plant);
+    defaultPlant ? updatePlant({ ...plant, id: defaultPlant.id }) : addPlant(plant);
     showSuccess({ message: 'Plante créer avec succès' });
     afterValidation();
   };

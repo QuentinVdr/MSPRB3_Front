@@ -2,11 +2,15 @@ import PlantForm from '@components/plant/PlantForm/PlantForm';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { Button, Grid, IconButton, Modal, Stack, Typography } from '@mui/material';
-import { plants } from '@pages/Home/Home';
+import { useSnackbarStore } from '@stores/SnackbarStore';
+import { usePlantsStore } from '@stores/dataStore/PlantsStore';
 import { useState } from 'react';
 import styles from './MyPlant.module.scss';
 
 export default function MyPlant() {
+  const plants = usePlantsStore((state) => state.plants);
+  const removePlant = usePlantsStore((state) => state.removePlant);
+  const { showSuccess } = useSnackbarStore();
   const [selectedPlant, setSelectedPlant] = useState(plants[0]);
   const [selectedPlantUpdate, setSelectedPlantUpdate] = useState(null);
   const [isPlantFormOpen, setIsPlantFormOpen] = useState(false);
@@ -21,7 +25,8 @@ export default function MyPlant() {
   };
 
   const handleDelete = (plant) => {
-    console.log('delete', plant);
+    removePlant(plant.id);
+    showSuccess({ message: `La plante ${plant.name} à été supprimé` });
   };
 
   const handleClose = () => {
