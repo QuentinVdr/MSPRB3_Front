@@ -17,7 +17,7 @@ export default function Home() {
   const minimalZoom = 13;
 
   return (
-    <Grid container direction={{ xs: 'column-reverse', md: 'row' }} className={styles.homePage}>
+    <Grid container direction={{ xs: 'column-reverse', md: 'row' }} wrap="nowrap" className={styles.homePage}>
       <Grid item xs={4} lg={3} container direction="column" gap={3} className={styles.plantsList}>
         <Stack direction="row" justifyContent="space-between">
           <Typography variant="h2">Les plantes</Typography>
