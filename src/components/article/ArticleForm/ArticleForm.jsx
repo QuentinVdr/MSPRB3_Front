@@ -31,7 +31,7 @@ export default function ArticleForm({ afterValidation, afterCancel, defaultArtic
       <FormControl fullWidth variant="outlined">
         <Stack direction="column" gap={2}>
           <Controller
-            name="name"
+            name="title"
             control={control}
             rules={{
               required: 'Requis'
