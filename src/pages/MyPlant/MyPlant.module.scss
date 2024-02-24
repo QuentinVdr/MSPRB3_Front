@@ -15,7 +15,7 @@
       background-color: colors.$grey-background;
     }
     &.selectedPlantCard {
-      background-color: colors.$grey-background !important;
+      background-color: colors.$grey-background;
     }
   }
 
@@ -36,14 +36,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-
-  .plantFormCard {
-    width: 80vw;
-    max-width: 500px;
-    padding: 1.5rem 3rem;
-    border-radius: 16px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: white;
+    .plantFormCard {
+      width: 80vw;
+      max-width: 500px;
+      padding: 1.5rem 3rem;
+      border-radius: 16px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color: white;
+    }
   }
 }

@@ -1,9 +1,9 @@
 @use '@styles/variables.module.scss';
 
 .homePage {
-  height: variables.$app-min-height;
+  min-height: variables.$app-min-height;
 
-  .plantesList {
+  .plantsList {
     padding: 12px 16px;
   }
 

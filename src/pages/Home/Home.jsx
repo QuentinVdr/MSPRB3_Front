@@ -17,8 +17,8 @@ export default function Home() {
   const minimalZoom = 13;
 
   return (
-    <Grid container direction="row" className={styles.homePage}>
-      <Grid item xs={6} sm={5} md={4} lg={3} container direction="column" gap={3} className={styles.plantesList}>
+    <Grid container direction={{ xs: 'column-reverse', md: 'row' }} className={styles.homePage}>
+      <Grid item xs={4} lg={3} container direction="column" gap={3} className={styles.plantsList}>
         <Stack direction="row" justifyContent="space-between">
           <Typography variant="h2">Les plantes</Typography>
           <Stack alignItems="center" justifyContent="center">
@@ -39,7 +39,7 @@ export default function Home() {
           </Stack>
         </Stack>
       </Grid>
-      <Grid item xs={6} sm={7} md={8} lg={9}>
+      <Grid item xs={8} lg={9}>
         <MapContainer
           className={styles.mapContainer}
           center={defaultCenter}
