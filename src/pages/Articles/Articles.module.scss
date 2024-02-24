@@ -1,29 +1,33 @@
 @use '@styles/variables.module.scss';
 @use '@styles/colors.module.scss';
 
-.plantPage {
-  min-height: variables.$app-min-height;
+.articlesPage {
+  height: variables.$app-min-height;
   padding: 1.5rem 2rem;
 
-  .myPlantsCard {
-    padding: 0.5rem 1.5rem;
-    border-radius: 16px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: white;
-    cursor: pointer;
-    &:hover {
-      background-color: colors.$grey-background;
-    }
-    &.selectedPlantCard {
-      background-color: colors.$grey-background;
+  .articleslist {
+    overflow-y: scroll;
+
+    .myArticlesCard {
+      padding: 0.5rem 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color: white;
+      cursor: pointer;
+      &:hover {
+        background-color: colors.$grey-background;
+      }
+      &.selectedArticleCard {
+        background-color: colors.$grey-background;
+      }
     }
   }
 
-  .addPlantButton {
+  .addArticleButton {
     margin-top: auto;
   }
 
-  .selectedPlantDetail {
+  .selectedArticleDetail {
     padding: 2rem 3rem;
     border-radius: 24px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -31,12 +35,12 @@
   }
 }
 
-.plantFormModal {
+.articleFormModal {
   &:global(.MuiModal-root) {
     display: flex;
     justify-content: center;
     align-items: center;
-    .plantFormCard {
+    .articleFormCard {
       width: 80vw;
       max-width: 500px;
       padding: 1.5rem 3rem;
