@@ -2,25 +2,33 @@
 @use '@styles/colors.module.scss';
 
 .plantsPage {
-  min-height: variables.$app-min-height;
+  height: variables.$app-min-height;
   padding: 1.5rem 2rem;
 
-  .myPlantsCard {
-    padding: 0.5rem 1.5rem;
-    border-radius: 16px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: white;
-    cursor: pointer;
-    &:hover {
-      background-color: colors.$grey-background;
-    }
-    &.selectedPlantCard {
-      background-color: colors.$grey-background;
-    }
-  }
+  .plantsListPanel {
+    height: 100%;
+    .plantsList {
+      overflow: hidden;
+      overflow-y: scroll;
 
-  .addPlantButton {
-    margin-top: auto;
+      .myPlantsCard {
+        padding: 0.5rem 1.5rem;
+        border-radius: 16px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        background-color: white;
+        cursor: pointer;
+        &:hover {
+          background-color: colors.$grey-background;
+        }
+        &.selectedPlantCard {
+          background-color: colors.$grey-background;
+        }
+      }
+    }
+
+    .addPlantButton {
+      margin-top: auto;
+    }
   }
 
   .selectedPlantDetail {

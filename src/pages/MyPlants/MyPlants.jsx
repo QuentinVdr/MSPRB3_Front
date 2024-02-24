@@ -43,33 +43,35 @@ export default function MyPlant() {
         wrap="nowrap"
         className={styles.plantsPage}
       >
-        <Grid item xs md={3} container direction="column" gap={2}>
-          <Typography variant="h2">Mes plantes</Typography>
-          <Stack direction="column" gap={1}>
-            {plants.map((plant) => (
-              <Stack
-                key={`${plant.id} ${plant.name}`}
-                onClick={() => setSelectedPlant(plant)}
-                className={styles.myPlantsCard + (plant == selectedPlant ? ` ${styles.selectedPlantCard}` : '')}
-                direction="row"
-                justifyContent="space-between"
-                alignItems="center"
-              >
-                <Typography variant="body1">{plant.name}</Typography>
-                <Stack direction="row">
-                  <IconButton onClick={() => handleUpdate(plant)} color="primary">
-                    <EditIcon />
-                  </IconButton>
-                  <IconButton onClick={() => handleDelete(plant)}>
-                    <DeleteIcon />
-                  </IconButton>
+        <Grid item xs md={3}>
+          <Stack direction="column" gap={2} className={styles.plantsListPanel}>
+            <Typography variant="h2">Mes plantes</Typography>
+            <Stack direction="column" gap={1} className={styles.plantsList}>
+              {plants.map((plant) => (
+                <Stack
+                  key={`${plant.id} ${plant.name}`}
+                  onClick={() => setSelectedPlant(plant)}
+                  className={styles.myPlantsCard + (plant == selectedPlant ? ` ${styles.selectedPlantCard}` : '')}
+                  direction="row"
+                  justifyContent="space-between"
+                  alignItems="center"
+                >
+                  <Typography variant="body1">{plant.name}</Typography>
+                  <Stack direction="row">
+                    <IconButton onClick={() => handleUpdate(plant)} color="primary">
+                      <EditIcon />
+                    </IconButton>
+                    <IconButton onClick={() => handleDelete(plant)}>
+                      <DeleteIcon />
+                    </IconButton>
+                  </Stack>
                 </Stack>
-              </Stack>
-            ))}
+              ))}
+            </Stack>
+            <Button variant="contained" onClick={handleOpen} className={styles.addPlantButton}>
+              Ajouter une nouvelle plante
+            </Button>
           </Stack>
-          <Button variant="contained" onClick={handleOpen} className={styles.addPlantButton}>
-            Ajouter une nouvelle plante
-          </Button>
         </Grid>
         <Grid item xs md={9} container direction="column" gap={2}>
           <Typography variant="h2">Plante detail</Typography>
