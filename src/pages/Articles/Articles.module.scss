@@ -5,26 +5,30 @@
   height: variables.$app-min-height;
   padding: 1.5rem 2rem;
 
-  .articleslist {
-    overflow-y: scroll;
+  .articlesListPanel {
+    height: 100%;
 
-    .myArticlesCard {
-      padding: 0.5rem 1.5rem;
-      border-radius: 16px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      background-color: white;
-      cursor: pointer;
-      &:hover {
-        background-color: colors.$grey-background;
-      }
-      &.selectedArticleCard {
-        background-color: colors.$grey-background;
+    .articlesList {
+      overflow: scroll;
+
+      .myArticlesCard {
+        padding: 0.5rem 1.5rem;
+        border-radius: 16px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        background-color: white;
+        cursor: pointer;
+        &:hover {
+          background-color: colors.$grey-background;
+        }
+        &.selectedArticleCard {
+          background-color: colors.$grey-background;
+        }
       }
     }
-  }
 
-  .addArticleButton {
-    margin-top: auto;
+    .addArticleButton {
+      margin-top: auto;
+    }
   }
 
   .selectedArticleDetail {
