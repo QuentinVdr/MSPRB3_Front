@@ -34,5 +34,5 @@ export const useArticleStore = create((set) => ({
     set((state) => ({
       articles: state.articles.map((article) => (article.id === updatedArticle.id ? updatedArticle : article))
     })),
-  removeArticle: (id) => set((state) => ({ articles: state.articles.filter((Article) => Article.id !== id) }))
+  removeArticle: (id) => set((state) => ({ articles: state.articles.filter((article) => article.id !== id) }))
 }));
