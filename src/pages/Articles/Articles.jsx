@@ -39,37 +39,41 @@ export default function Articles() {
       <Grid
         container
         direction={{ xs: 'column-reverse', md: 'row' }}
-        spacing={3}
+        columnSpacing={3}
         wrap="nowrap"
         className={styles.articlesPage}
       >
-        <Grid item xs={3} container direction="column" gap={2}>
-          <Typography variant="h2">Liste d&apos;article</Typography>
-          <Stack direction="column" gap={1}>
-            {articles.map((article) => (
-              <Stack
-                key={`${article.id} ${article.title}`}
-                onClick={() => setSelectedArticle(article)}
-                className={styles.myArticlesCard + (article == selectedArticle ? ` ${styles.selectedArticleCard}` : '')}
-                direction="row"
-                justifyContent="space-between"
-                alignItems="center"
-              >
-                <Typography variant="body1">{article.title}</Typography>
-                <Stack direction="row">
-                  <IconButton onClick={() => handleUpdate(article)} color="primary">
-                    <EditIcon />
-                  </IconButton>
-                  <IconButton onClick={() => handleDelete(article)}>
-                    <DeleteIcon />
-                  </IconButton>
+        <Grid item xs={3}>
+          <Stack direction="column" gap={2} className={styles.articlesListPanel}>
+            <Typography variant="h2">Liste d&apos;article</Typography>
+            <Stack direction="column" gap={1} className={styles.articlesList}>
+              {articles.map((article) => (
+                <Stack
+                  key={`${article.id} ${article.title}`}
+                  onClick={() => setSelectedArticle(article)}
+                  className={
+                    styles.myArticlesCard + (article == selectedArticle ? ` ${styles.selectedArticleCard}` : '')
+                  }
+                  direction="row"
+                  justifyContent="space-between"
+                  alignItems="center"
+                >
+                  <Typography variant="body1">{article.title}</Typography>
+                  <Stack direction="row">
+                    <IconButton onClick={() => handleUpdate(article)} color="primary">
+                      <EditIcon />
+                    </IconButton>
+                    <IconButton onClick={() => handleDelete(article)}>
+                      <DeleteIcon />
+                    </IconButton>
+                  </Stack>
                 </Stack>
-              </Stack>
-            ))}
+              ))}
+            </Stack>
+            <Button variant="contained" onClick={handleOpen} className={styles.addArticleButton}>
+              Ajouter un nouvel article
+            </Button>
           </Stack>
-          <Button variant="contained" onClick={handleOpen} className={styles.addArticleButton}>
-            Ajouter un nouvel article
-          </Button>
         </Grid>
         <Grid item xs={9} container direction="column" gap={2}>
           <Typography variant="h2">Article detail</Typography>
