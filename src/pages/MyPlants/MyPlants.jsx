@@ -36,13 +36,19 @@ export default function MyPlant() {
 
   return (
     <>
-      <Grid container direction={{ xs: 'column-reverse', md: 'row' }} spacing={3} className={styles.plantsPage}>
+      <Grid
+        container
+        direction={{ xs: 'column-reverse', md: 'row' }}
+        spacing={3}
+        wrap="nowrap"
+        className={styles.plantsPage}
+      >
         <Grid item xs md={3} container direction="column" gap={2}>
           <Typography variant="h2">Mes plantes</Typography>
           <Stack direction="column" gap={1}>
             {plants.map((plant) => (
               <Stack
-                key={`${plant.key} ${plant.name}`}
+                key={`${plant.id} ${plant.name}`}
                 onClick={() => setSelectedPlant(plant)}
                 className={styles.myPlantsCard + (plant == selectedPlant ? ` ${styles.selectedPlantCard}` : '')}
                 direction="row"

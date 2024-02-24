@@ -36,13 +36,19 @@ export default function Articles() {
 
   return (
     <>
-      <Grid container direction={{ xs: 'column-reverse', md: 'row' }} spacing={3} className={styles.articlesPage}>
-        <Grid item xs md={3} container direction="column" gap={2}>
+      <Grid
+        container
+        direction={{ xs: 'column-reverse', md: 'row' }}
+        spacing={3}
+        wrap="nowrap"
+        className={styles.articlesPage}
+      >
+        <Grid item xs={3} container direction="column" gap={2}>
           <Typography variant="h2">Liste d&apos;article</Typography>
           <Stack direction="column" gap={1}>
             {articles.map((article) => (
               <Stack
-                key={`${article.key} ${article.title}`}
+                key={`${article.id} ${article.title}`}
                 onClick={() => setSelectedArticle(article)}
                 className={styles.myArticlesCard + (article == selectedArticle ? ` ${styles.selectedArticleCard}` : '')}
                 direction="row"
@@ -65,7 +71,7 @@ export default function Articles() {
             Ajouter un nouvel article
           </Button>
         </Grid>
-        <Grid item xs md={9} container direction="column" gap={2}>
+        <Grid item xs={9} container direction="column" gap={2}>
           <Typography variant="h2">Article detail</Typography>
           <Stack direction="column" gap={2} className={styles.selectedArticleDetail}>
             <Typography variant="h2">{selectedArticle.title}</Typography>
