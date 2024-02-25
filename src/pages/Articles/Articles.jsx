@@ -38,13 +38,34 @@ export default function Articles() {
     <>
       <Grid
         container
-        direction={{ xs: 'column-reverse', md: 'row' }}
+        direction={{ xs: 'column', md: 'row-reverse' }}
         columnSpacing={3}
+        rowGap={2}
         wrap="nowrap"
         className={styles.articlesPage}
       >
-        <Grid item xs={3}>
-          <Stack direction="column" gap={2} className={styles.articlesListPanel}>
+        <Grid
+          item
+          xs={8}
+          md={9}
+          container
+          direction="column"
+          gap={2}
+          className={styles.articleDetailSection}
+          wrap="nowrap"
+        >
+          <Typography variant="h2">Article detail</Typography>
+          <Stack direction="column" gap={2} className={styles.selectedArticleDetail}>
+            <Typography variant="h2">{selectedArticle.title}</Typography>
+            <Grid container direction="row" spacing={1}>
+              <Grid item xs={12}>
+                <Typography variant="body1">{selectedArticle.description}</Typography>
+              </Grid>
+            </Grid>
+          </Stack>
+        </Grid>
+        <Grid item xs={4} md={3} className={styles.articlesListSection}>
+          <Stack direction="column" gap={2} className={styles.articlesListSectionContent}>
             <Typography variant="h2">Liste d&apos;article</Typography>
             <Stack direction="column" gap={1} className={styles.articlesList}>
               {articles.map((article) => (
@@ -73,17 +94,6 @@ export default function Articles() {
             <Button variant="contained" onClick={handleOpen} className={styles.addArticleButton}>
               Ajouter un nouvel article
             </Button>
-          </Stack>
-        </Grid>
-        <Grid item xs={9} container direction="column" gap={2}>
-          <Typography variant="h2">Article detail</Typography>
-          <Stack direction="column" gap={2} className={styles.selectedArticleDetail}>
-            <Typography variant="h2">{selectedArticle.title}</Typography>
-            <Grid container direction="row" spacing={1}>
-              <Grid item xs={12}>
-                <Typography variant="body1">{selectedArticle.description}</Typography>
-              </Grid>
-            </Grid>
           </Stack>
         </Grid>
       </Grid>
