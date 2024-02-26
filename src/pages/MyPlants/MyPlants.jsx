@@ -37,7 +37,7 @@ export default function MyPlant() {
   return (
     <>
       <Stack direction={{ xs: 'column', md: 'row-reverse' }} spacing={3} className={styles.plantsPage}>
-        <Stack direction="column" gap={2} className={styles.plantDetailSection}>
+        <Stack direction="column" gap={2} flex={3} className={styles.plantDetailSection}>
           <Typography variant="h2">Plante detail</Typography>
           <Stack direction="column" gap={2} className={styles.selectedPlantDetail}>
             <Typography variant="h2">{selectedPlant.name}</Typography>
@@ -76,7 +76,7 @@ export default function MyPlant() {
             </Grid>
           </Stack>
         </Stack>
-        <Stack direction="column" gap={2} className={styles.plantsListSection}>
+        <Stack direction="column" gap={2} flex={1} className={styles.plantsListSection}>
           <Typography variant="h2">Mes plantes</Typography>
           <Stack direction="column" gap={1} className={styles.plantsList}>
             {plants.map((plant) => (
