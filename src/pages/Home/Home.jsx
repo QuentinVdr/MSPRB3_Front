@@ -5,16 +5,23 @@ import { Button, Card, Grid, Stack, Typography } from '@mui/material';
 import { usePlantsStore } from '@stores/dataStore/PlantsStore';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import styles from './Home.module.scss';
 
 export default function Home() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const plants = usePlantsStore((state) => state.plants);
+  const mapRef = useRef();
 
   const defaultCenter = L.latLng(47.216671, -1.55);
   const minimalZoom = 13;
+
+  const handlePlantCardClick = (plant) => {
+    if (mapRef.current) {
+      mapRef.current.flyTo(L.latLng(plant.latitude, plant.longitude), 18, { duration: 1 });
+    }
+  };
 
   return (
     <Grid container direction={{ xs: 'column-reverse', md: 'row' }} wrap="nowrap" className={styles.homePage}>
@@ -32,7 +39,12 @@ export default function Home() {
           <Typography variant="h3">plante</Typography>
           <Stack direction="column" gap={1}>
             {plants.map((plant) => (
-              <Card variant="outlined" key={`${plant.key} ${plant.name}`}>
+              <Card
+                variant="outlined"
+                key={`${plant.key} ${plant.name}`}
+                className={styles.plantsListItem}
+                onClick={() => handlePlantCardClick(plant)}
+              >
                 <Typography variant="body1">{plant.name}</Typography>
               </Card>
             ))}
@@ -45,6 +57,7 @@ export default function Home() {
           center={defaultCenter}
           zoom={minimalZoom}
           placeholder={<Typography variant="body1">Ca charge, attend</Typography>}
+          ref={mapRef}
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
