@@ -1,3 +1,4 @@
+import { UploadButton } from '@bytescale/upload-widget-react';
 import { useAddressDetailQuery } from '@hooks/reactQuery/queries/useAddressQueries';
 import { Button, Checkbox, FormControl, FormControlLabel, Grid, Stack, TextField, Typography } from '@mui/material';
 import { useSnackbarStore } from '@stores/SnackbarStore';
@@ -21,6 +22,11 @@ export default function PlantForm({ afterValidation, afterCancel, defaultPlant }
     enabled: false,
     onSuccess: () => handlePlantSave()
   });
+
+  const options = {
+    apiKey: import.meta.env.VITE_API_FILES_BUCKET_KEY,
+    maxFileCount: 5
+  };
 
   const onSubmitPlant = () => {
     fetchAddressDetail()
@@ -136,6 +142,20 @@ export default function PlantForm({ afterValidation, afterCancel, defaultPlant }
                 label="A besoin de conseil"
                 control={<Checkbox {...fieldState} checked={fieldState.value} />}
               />
+            )}
+          />
+
+          <Controller
+            name="images"
+            control={control}
+            render={({ field: { onChange } }) => (
+              <UploadButton options={options} onComplete={(files) => onChange(files.map((x) => x.fileUrl))}>
+                {({ onClick }) => (
+                  <Button onClick={onClick} variant="outlined">
+                    Ajouter des images
+                  </Button>
+                )}
+              </UploadButton>
             )}
           />
         </Stack>
