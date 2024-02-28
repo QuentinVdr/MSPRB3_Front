@@ -51,8 +51,8 @@ export default function Articles() {
           container
           direction="column"
           gap={2}
-          className={styles.articleDetailSection}
           wrap="nowrap"
+          className={styles.articleDetailSection}
         >
           <Typography variant="h2">Article detail</Typography>
           <Stack direction="column" gap={2} className={styles.selectedArticleDetail}>
