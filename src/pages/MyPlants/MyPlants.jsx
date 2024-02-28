@@ -97,6 +97,11 @@ export default function MyPlant() {
                 </Typography>
               </Grid>
             </Grid>
+            <Stack direction="row" flexWrap="nowrap" className={styles.selectedPlantImages}>
+              {selectedPlant.images.map((image, index) => (
+                <img key={image} src={image} alt={`Image ${index}`} className={styles.selectedPlantImage} />
+              ))}
+            </Stack>
           </Stack>
         </Grid>
       </Grid>
