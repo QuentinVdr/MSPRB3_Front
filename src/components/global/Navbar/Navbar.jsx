@@ -1,12 +1,16 @@
+import ArosajeLogoBGRounded from '@components/global/logo/ArosajeLogoBGRounded';
 import { useAuth } from '@hooks/contexts/useAuth';
 import { AccountCircle } from '@mui/icons-material';
-import { AppBar, IconButton, Menu, MenuItem, Stack, Typography } from '@mui/material';
+import { AppBar, IconButton, Menu, MenuItem, Stack, Typography, useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './Navbar.module.scss';
 
 export default function Navbar() {
   const navigate = useNavigate();
+  const theme = useTheme();
+  const isSm = useMediaQuery(theme.breakpoints.down('sm'));
   const { isAuthenticated, logout } = useAuth();
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -34,7 +38,7 @@ export default function Navbar() {
       <Stack direction="row" gap={2} justifyContent="center" alignItems="center">
         <Link to="/" className={styles.arosajeLogo}>
           <ArosajeLogoBGRounded size="36" />
-          <Typography variant="h1">Arosa&apos;je</Typography>
+          {!isSm && <Typography variant="h1">Arosa&apos;je</Typography>}
         </Link>
         {isAuthenticated() && (
           <Link to="/my-plants">
