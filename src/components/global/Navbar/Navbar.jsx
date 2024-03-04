@@ -31,8 +31,9 @@ export default function Navbar() {
 
   return (
     <AppBar className={styles.navbar} position="sticky">
-      <Stack direction="row" gap={2} alignItems="center">
-        <Link to="/">
+      <Stack direction="row" gap={2} justifyContent="center" alignItems="center">
+        <Link to="/" className={styles.arosajeLogo}>
+          <ArosajeLogoBGRounded size="36" />
           <Typography variant="h1">Arosa&apos;je</Typography>
         </Link>
         {isAuthenticated() && (
