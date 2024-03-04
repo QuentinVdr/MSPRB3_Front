@@ -4,9 +4,12 @@
   "icons": [
     {
       "src": "public/assets/logo/arosajeLogo.png",
-      "type": "image/png"
+      "type": "image/png",
+      "sizes": "712x712"
     }
   ],
   "start_url": ".",
-  "display": "standalone"
+  "display": "standalone",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff"
 }
