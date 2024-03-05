@@ -3,7 +3,7 @@
   "name": "Arosa-je",
   "icons": [
     {
-      "src": "public/assets/logo/arosajeLogo.png",
+      "src": "/assets/logo/arosajeLogo.png",
       "type": "image/png",
       "sizes": "712x712"
     }
