@@ -2,6 +2,7 @@ import { useAuth } from '@hooks/contexts/useAuth';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Button, FormControl, IconButton, InputAdornment, Stack, TextField } from '@mui/material';
 import { useSnackbarStore } from '@stores/SnackbarStore';
+import { users } from '@stores/dataStore/User';
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -13,16 +14,17 @@ export default function SignInForm() {
   const { handleSubmit, reset, control } = useForm();
   const [showPassword, setShowPassword] = useState(false);
 
-  const onSubmitLogin = ({ email, password }) => {
-    if (email === 'user@mail.com' && password === 'user') {
-      login({ firstName: 'user', lastName: 'casual', mail: 'user@mail.com', isBotanist: false });
-      showSuccess({ message: 'Connecter avec sucées' });
-      navigate('/');
-    } else if (email === 'botanist@mail.com' && password === 'botanist') {
-      login({ firstName: 'user', lastName: 'botanist', mail: 'user@mail.com', isBotanist: true });
-      showSuccess({ message: 'Connecter avec sucées' });
-      navigate('/');
-    } else {
+  const onSubmitLogin = ({ mail, password }) => {
+    let isLog = false;
+    users.forEach((user) => {
+      if (mail === user.mail && password === user.password) {
+        isLog = true;
+        login(user);
+        showSuccess({ message: 'Connecter avec sucées' });
+        navigate('/');
+      }
+    });
+    if (!isLog) {
       showError({ message: 'Identification invalide' });
     }
   };
@@ -32,7 +34,7 @@ export default function SignInForm() {
       <FormControl fullWidth variant="outlined">
         <Stack direction="column" gap={2}>
           <Controller
-            name="email"
+            name="mail"
             control={control}
             defaultValue=""
             rules={{
@@ -43,7 +45,7 @@ export default function SignInForm() {
               }
             }}
             render={({ field: fieldState, fieldState: { error } }) => (
-              <TextField {...fieldState} label="Email" error={!!error} helperText={error ? error.message : null} />
+              <TextField {...fieldState} label="Mail" error={!!error} helperText={error ? error.message : null} />
             )}
           />
           <Controller
