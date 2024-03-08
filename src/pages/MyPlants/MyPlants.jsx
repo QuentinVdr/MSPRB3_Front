@@ -1,4 +1,5 @@
 import PlantForm from '@components/plant/PlantForm/PlantForm';
+import { useAuth } from '@hooks/contexts/useAuth';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { Button, Grid, IconButton, Modal, Stack, Typography } from '@mui/material';
@@ -8,7 +9,8 @@ import { useState } from 'react';
 import styles from './MyPlants.module.scss';
 
 export default function MyPlant() {
-  const plants = usePlantsStore((state) => state.plants);
+  const { user } = useAuth();
+  const plants = usePlantsStore((state) => state.myPlants(user.id));
   const removePlant = usePlantsStore((state) => state.removePlant);
   const { showSuccess } = useSnackbarStore();
   const [selectedPlant, setSelectedPlant] = useState(plants[0]);
