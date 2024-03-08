@@ -10,10 +10,10 @@ import styles from './MyPlants.module.scss';
 
 export default function MyPlant() {
   const { user } = useAuth();
-  const plants = usePlantsStore((state) => state.myPlants(user.id));
+  const plants = usePlantsStore((state) => state.myPlants(user?.id));
   const removePlant = usePlantsStore((state) => state.removePlant);
   const { showSuccess } = useSnackbarStore();
-  const [selectedPlant, setSelectedPlant] = useState(plants[0]);
+  const [selectedPlant, setSelectedPlant] = useState(plants[0] ?? null);
   const [selectedPlantUpdate, setSelectedPlantUpdate] = useState(null);
   const [isPlantFormOpen, setIsPlantFormOpen] = useState(false);
 
@@ -42,66 +42,83 @@ export default function MyPlant() {
         <Stack direction="column" gap={2} flex={3} className={styles.plantDetailSection}>
           <Typography variant="h2">Plante detail</Typography>
           <Stack direction="column" gap={2} className={styles.selectedPlantDetail}>
-            <Typography variant="h2">{selectedPlant.name}</Typography>
-            <Grid container direction="row" spacing={1}>
-              <Grid item xs={12}>
-                <Typography variant="body1">{selectedPlant.description}</Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <Typography variant="body1">{selectedPlant.address}</Typography>
-              </Grid>
-              <Grid item xs={6}>
-                <Typography variant="body1">{selectedPlant.city}</Typography>
-              </Grid>
-              <Grid item xs={6}>
-                <Typography variant="body1">{selectedPlant.postalCode}</Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <Typography variant="body1">
-                  {selectedPlant.isNeedingCare
-                    ? `${selectedPlant.name} a besoin de soin`
-                    : `${selectedPlant.name} n'a pas besoin de soin`}
-                </Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <Typography variant="body1">
-                  {selectedPlant.isNeedingTips
-                    ? `${selectedPlant.name} a besoin d'aide`
-                    : `${selectedPlant.name} n'a pas besoin d'aide`}
-                </Typography>
-              </Grid>
-              <Stack direction="row" flexWrap="nowrap" className={styles.selectedPlantImages}>
-                {selectedPlant.images.map((image, index) => (
-                  <img key={image} src={image} alt={`Image ${index}`} className={styles.selectedPlantImage} />
-                ))}
-              </Stack>
-            </Grid>
+            {!selectedPlant ? (
+              <Typography variant="body1">Aucune plante est sélectionner</Typography>
+            ) : (
+              <>
+                <Typography variant="h2">{selectedPlant?.name}</Typography>
+                <Grid container direction="row" spacing={1}>
+                  <Grid item xs={12}>
+                    <Typography variant="body1">{selectedPlant?.description}</Typography>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Typography variant="body1">{selectedPlant?.address}</Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography variant="body1">{selectedPlant?.city}</Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography variant="body1">{selectedPlant?.postalCode}</Typography>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Typography variant="body1">
+                      {selectedPlant?.isNeedingCare
+                        ? `${selectedPlant?.name} a besoin de soin`
+                        : `${selectedPlant?.name} n'a pas besoin de soin`}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Typography variant="body1">
+                      {selectedPlant?.isNeedingTips
+                        ? `${selectedPlant?.name} a besoin d'aide`
+                        : `${selectedPlant?.name} n'a pas besoin d'aide`}
+                    </Typography>
+                  </Grid>
+                  <Stack direction="row" flexWrap="nowrap" className={styles.selectedPlantImages}>
+                    {selectedPlant?.images.map((image, index) => (
+                      <img
+                        key={image}
+                        src={image}
+                        alt={`the plant ${selectedPlant?.name} ${index}`}
+                        className={styles.selectedPlantImage}
+                      />
+                    ))}
+                  </Stack>
+                </Grid>
+              </>
+            )}
           </Stack>
         </Stack>
         <Stack direction="column" gap={2} flex={1} className={styles.plantsListSection}>
           <Typography variant="h2">Mes plantes</Typography>
-          <Stack direction="column" gap={1} className={styles.plantsList}>
-            {plants.map((plant) => (
-              <Stack
-                key={`${plant.id} ${plant.name}`}
-                onClick={() => setSelectedPlant(plant)}
-                className={styles.myPlantsCard + (plant == selectedPlant ? ` ${styles.selectedPlantCard}` : '')}
-                direction="row"
-                justifyContent="space-between"
-                alignItems="center"
-              >
-                <Typography variant="body1">{plant.name}</Typography>
-                <Stack direction="row">
-                  <IconButton onClick={() => handleUpdate(plant)} color="primary">
-                    <EditIcon />
-                  </IconButton>
-                  <IconButton onClick={() => handleDelete(plant)}>
-                    <DeleteIcon />
-                  </IconButton>
+          {plants.length < 1 ? (
+            <Stack justifyContent="center" alignItems="center">
+              <Typography variant="body1">Vous n&apos;avez pas de plante</Typography>
+            </Stack>
+          ) : (
+            <Stack direction="column" gap={1} className={styles.plantsList}>
+              {plants.map((plant) => (
+                <Stack
+                  key={`${plant.id} ${plant.name}`}
+                  onClick={() => setSelectedPlant(plant)}
+                  className={styles.myPlantsCard + (plant == selectedPlant ? ` ${styles.selectedPlantCard}` : '')}
+                  direction="row"
+                  justifyContent="space-between"
+                  alignItems="center"
+                >
+                  <Typography variant="body1">{plant.name}</Typography>
+                  <Stack direction="row">
+                    <IconButton onClick={() => handleUpdate(plant)} color="primary">
+                      <EditIcon />
+                    </IconButton>
+                    <IconButton onClick={() => handleDelete(plant)}>
+                      <DeleteIcon />
+                    </IconButton>
+                  </Stack>
                 </Stack>
-              </Stack>
-            ))}
-          </Stack>
+              ))}
+            </Stack>
+          )}
           <Button variant="contained" onClick={handleOpen} className={styles.addPlantButton}>
             Ajouter une nouvelle plante
           </Button>
