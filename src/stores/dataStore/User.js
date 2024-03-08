@@ -34,4 +34,4 @@ export const casualUser2 = {
   isBotanist: false
 };
 
-export const users = [botanistUser, casualUser];
+export const users = [botanistUser, botanistUser2, casualUser, casualUser2];
