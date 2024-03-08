@@ -1,4 +1,5 @@
 import ArticleForm from '@components/article/ArticleForm/ArticleForm';
+import { useAuth } from '@hooks/contexts/useAuth';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { Button, Grid, IconButton, Modal, Stack, Typography } from '@mui/material';
@@ -8,6 +9,7 @@ import { useState } from 'react';
 import styles from './Articles.module.scss';
 
 export default function Articles() {
+  const { user } = useAuth();
   const articles = useArticleStore((state) => state.articles);
   const removeArticle = useArticleStore((state) => state.removeArticle);
   const { showSuccess } = useSnackbarStore();
@@ -80,20 +82,24 @@ export default function Articles() {
                   alignItems="center"
                 >
                   <Typography variant="body1">{article.title}</Typography>
-                  <Stack direction="row">
-                    <IconButton onClick={() => handleUpdate(article)} color="primary">
-                      <EditIcon />
-                    </IconButton>
-                    <IconButton onClick={() => handleDelete(article)}>
-                      <DeleteIcon />
-                    </IconButton>
-                  </Stack>
+                  {user?.id === article.author.id && (
+                    <Stack direction="row">
+                      <IconButton onClick={() => handleUpdate(article)} color="primary">
+                        <EditIcon />
+                      </IconButton>
+                      <IconButton onClick={() => handleDelete(article)}>
+                        <DeleteIcon />
+                      </IconButton>
+                    </Stack>
+                  )}
                 </Stack>
               ))}
             </Stack>
-            <Button variant="contained" onClick={handleOpen} className={styles.addArticleButton}>
-              Ajouter un nouvel article
-            </Button>
+            {user?.isBotanist && (
+              <Button variant="contained" onClick={handleOpen} className={styles.addArticleButton}>
+                Ajouter un nouvel article
+              </Button>
+            )}
           </Stack>
         </Grid>
       </Grid>
