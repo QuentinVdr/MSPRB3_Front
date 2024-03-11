@@ -14,6 +14,7 @@ import { useSnackbarStore } from '@stores/SnackbarStore';
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import styles from './SignUpForm.module.scss';
 
 export default function SignUpForm() {
   const { login } = useAuth();
@@ -100,6 +101,37 @@ export default function SignUpForm() {
             defaultValue=""
             render={({ field: fieldState }) => (
               <FormControlLabel label="Êtes vous un botaniste" control={<Checkbox {...fieldState} />} />
+            )}
+          />
+          <Controller
+            name="consent"
+            control={control}
+            defaultValue=""
+            rules={{
+              required: 'Requis'
+            }}
+            render={({ field: fieldState, fieldState: { error } }) => (
+              <Stack direction="row" gap={-2}>
+                <FormControlLabel
+                  {...fieldState}
+                  control={
+                    <Checkbox
+                      sx={{
+                        color: error ? 'error.main' : undefined,
+                        '&.Mui-checked': {
+                          color: error ? 'error.main' : undefined
+                        }
+                      }}
+                    />
+                  }
+                  label={
+                    <>
+                      J&apos;ai lu et j&apos;accepte l&apos;utilisations de mes donnée personnel{' '}
+                      <span className={error && styles.gdprConsentError}>*</span>
+                    </>
+                  }
+                />
+              </Stack>
             )}
           />
         </Stack>
