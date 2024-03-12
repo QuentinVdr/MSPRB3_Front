@@ -64,9 +64,9 @@ const defaultPlants = [
   }
 ];
 
-export const usePlantsStore = create((set) => ({
+export const usePlantsStore = create((set, get) => ({
   plants: defaultPlants,
-  myPlants: (userId) => defaultPlants.filter((plant) => plant.owner.id === userId),
+  getMyPlants: (userId) => get().plants.filter((plant) => plant.owner.id === userId),
   addPlant: (newPlant) => set((state) => ({ plants: [...state.plants, newPlant] })),
   updatePlant: (updatedPlant) =>
     set((state) => ({ plants: state.plants.map((plant) => (plant.id === updatedPlant.id ? updatedPlant : plant)) })),

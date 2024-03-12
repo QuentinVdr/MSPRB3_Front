@@ -12,13 +12,14 @@ ArticleForm.propTypes = {
 };
 
 export default function ArticleForm({ afterValidation, afterCancel, defaultArticle }) {
-  const user = useAuth();
+  const { user } = useAuth();
   const addArticle = useArticleStore((state) => state.addArticle);
   const { showSuccess } = useSnackbarStore();
   const { handleSubmit, reset, control, getValues } = useForm({ defaultValues: defaultArticle });
 
   const handleArticleSave = () => {
     const article = { ...getValues(), author: user };
+    console.log('🚀 ~ handleArticleSave ~ article:', article);
     addArticle(article);
     showSuccess({ message: 'Article créer avec succès' });
     afterValidation();

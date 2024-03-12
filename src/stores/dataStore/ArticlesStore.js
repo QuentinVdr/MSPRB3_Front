@@ -34,7 +34,6 @@ const defaultArticles = [
 
 export const useArticleStore = create((set) => ({
   articles: defaultArticles,
-  getMyArticles: (userId) => defaultArticles.filter((article) => article.author.id === userId),
   addArticle: (newArticle) => set((state) => ({ articles: [...state.articles, newArticle] })),
   updateArticle: (updatedArticle) =>
     set((state) => ({
