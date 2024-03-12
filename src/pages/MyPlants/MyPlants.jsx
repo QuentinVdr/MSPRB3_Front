@@ -10,10 +10,10 @@ import styles from './MyPlants.module.scss';
 
 export default function MyPlant() {
   const { user } = useAuth();
-  const plants = usePlantsStore((state) => state.myPlants(user?.id));
+  const myPlants = usePlantsStore((state) => state.getMyPlants(user?.id));
   const removePlant = usePlantsStore((state) => state.removePlant);
   const { showSuccess } = useSnackbarStore();
-  const [selectedPlant, setSelectedPlant] = useState(plants[0] ?? null);
+  const [selectedPlant, setSelectedPlant] = useState(myPlants[0] ?? null);
   const [selectedPlantUpdate, setSelectedPlantUpdate] = useState(null);
   const [isPlantFormOpen, setIsPlantFormOpen] = useState(false);
 
@@ -75,7 +75,7 @@ export default function MyPlant() {
                     </Typography>
                   </Grid>
                   <Stack direction="row" flexWrap="nowrap" className={styles.selectedPlantImages}>
-                    {selectedPlant?.images.map((image, index) => (
+                    {selectedPlant?.images?.map((image, index) => (
                       <img
                         key={image}
                         src={image}
@@ -91,13 +91,13 @@ export default function MyPlant() {
         </Stack>
         <Stack direction="column" gap={2} flex={1} className={styles.plantsListSection}>
           <Typography variant="h2">Mes plantes</Typography>
-          {plants.length < 1 ? (
+          {myPlants.length < 1 ? (
             <Stack justifyContent="center" alignItems="center">
               <Typography variant="body1">Vous n&apos;avez pas de plante</Typography>
             </Stack>
           ) : (
             <Stack direction="column" gap={1} className={styles.plantsList}>
-              {plants.map((plant) => (
+              {myPlants.map((plant) => (
                 <Stack
                   key={`${plant.id} ${plant.name}`}
                   onClick={() => setSelectedPlant(plant)}

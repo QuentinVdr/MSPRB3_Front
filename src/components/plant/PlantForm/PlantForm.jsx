@@ -14,7 +14,7 @@ PlantForm.propTypes = {
 };
 
 export default function PlantForm({ afterValidation, afterCancel, defaultPlant }) {
-  const user = useAuth();
+  const { user } = useAuth();
   const addPlant = usePlantsStore((state) => state.addPlant);
   const updatePlant = usePlantsStore((state) => state.updatePlant);
   const { showSuccess, showError } = useSnackbarStore();
@@ -48,6 +48,7 @@ export default function PlantForm({ afterValidation, afterCancel, defaultPlant }
       longitude: lon,
       owner: user
     };
+    console.log('🚀 ~ handlePlantSave ~ plant:', plant);
     defaultPlant ? updatePlant({ ...plant, id: defaultPlant.id }) : addPlant(plant);
     showSuccess({ message: 'Plante créer avec succès' });
     afterValidation();
@@ -147,7 +148,6 @@ export default function PlantForm({ afterValidation, afterCancel, defaultPlant }
               />
             )}
           />
-
           <Controller
             name="images"
             control={control}
