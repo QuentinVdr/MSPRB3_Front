@@ -118,7 +118,7 @@ export const theme = createTheme({
       letterSpacing: '1px'
     },
     h2: {
-      fontWeight: 300,
+      fontWeight: 400,
       fontSize: '2rem',
       letterSpacing: '-0.5px'
     },
