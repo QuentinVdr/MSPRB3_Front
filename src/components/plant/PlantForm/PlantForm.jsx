@@ -1,4 +1,5 @@
 import { UploadButton } from '@bytescale/upload-widget-react';
+import { useAuth } from '@hooks/contexts/useAuth';
 import { useAddressDetailQuery } from '@hooks/reactQuery/queries/useAddressQueries';
 import { Button, Checkbox, FormControl, FormControlLabel, Grid, Stack, TextField, Typography } from '@mui/material';
 import { useSnackbarStore } from '@stores/SnackbarStore';
@@ -13,6 +14,7 @@ PlantForm.propTypes = {
 };
 
 export default function PlantForm({ afterValidation, afterCancel, defaultPlant }) {
+  const user = useAuth();
   const addPlant = usePlantsStore((state) => state.addPlant);
   const updatePlant = usePlantsStore((state) => state.updatePlant);
   const { showSuccess, showError } = useSnackbarStore();
@@ -43,7 +45,8 @@ export default function PlantForm({ afterValidation, afterCancel, defaultPlant }
     const plant = {
       ...getValues(),
       latitude: lat,
-      longitude: lon
+      longitude: lon,
+      owner: user
     };
     defaultPlant ? updatePlant({ ...plant, id: defaultPlant.id }) : addPlant(plant);
     showSuccess({ message: 'Plante créer avec succès' });
