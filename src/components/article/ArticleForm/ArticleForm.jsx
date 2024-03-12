@@ -1,5 +1,7 @@
+import { useAuth } from '@hooks/contexts/useAuth';
 import { Button, FormControl, Grid, Stack, TextField, Typography } from '@mui/material';
 import { useSnackbarStore } from '@stores/SnackbarStore';
+import { useArticleStore } from '@stores/dataStore/ArticlesStore';
 import PropTypes from 'prop-types';
 import { Controller, useForm } from 'react-hook-form';
 
@@ -10,12 +12,14 @@ ArticleForm.propTypes = {
 };
 
 export default function ArticleForm({ afterValidation, afterCancel, defaultArticle }) {
+  const user = useAuth();
+  const addArticle = useArticleStore((state) => state.addArticle);
   const { showSuccess } = useSnackbarStore();
   const { handleSubmit, reset, control, getValues } = useForm({ defaultValues: defaultArticle });
 
   const handleArticleSave = () => {
-    const article = getValues();
-    console.log('🚀 ~ handleArticleSave ~ article:', article);
+    const article = { ...getValues(), author: user };
+    addArticle(article);
     showSuccess({ message: 'Article créer avec succès' });
     afterValidation();
   };
