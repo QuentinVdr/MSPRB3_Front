@@ -1,0 +1,21 @@
+@use '@styles/variables.module.scss';
+@use '@styles/mixins.scss';
+
+.cguPage {
+  height: variables.$app-min-height;
+  max-width: 800px;
+  margin: auto;
+  padding: 1rem 1.5rem;
+
+  .list {
+    li {
+      list-style: circle;
+    }
+  }
+}
+
+@include mixins.for-phone-only {
+  .cguPage {
+    padding: 1rem 1.5rem;
+  }
+}

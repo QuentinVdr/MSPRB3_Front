@@ -1,6 +1,7 @@
 import ArosajeLogoBGRounded from '@components/global/logo/ArosajeLogoBGRounded';
 import { useAuth } from '@hooks/contexts/useAuth';
 import { AccountCircle } from '@mui/icons-material';
+import InfoIcon from '@mui/icons-material/Info';
 import { AppBar, IconButton, Menu, MenuItem, Stack, Typography, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { useState } from 'react';
@@ -20,6 +21,10 @@ export default function Navbar() {
 
   const handleCloseMenu = () => {
     setAnchorEl(null);
+  };
+
+  const handleCGUClick = () => {
+    navigate('/cgu');
   };
 
   const handleLogout = () => {
@@ -49,6 +54,9 @@ export default function Navbar() {
           <Typography variant="body1">Articles</Typography>
         </Link>
         <div className={styles.userMenu}>
+          <IconButton size="large" aria-label="go to cgu" onClick={handleCGUClick} color="inherit">
+            <InfoIcon />
+          </IconButton>
           <IconButton
             size="large"
             aria-label="account of current user"

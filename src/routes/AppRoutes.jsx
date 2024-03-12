@@ -1,5 +1,6 @@
 import Articles from '@pages/Articles/Articles';
 import Auth from '@pages/Auth/Auth';
+import CGU from '@pages/CGU/CGU';
 import Home from '@pages/Home/Home';
 import MyPlants from '@pages/MyPlants/MyPlants';
 import { NotFound } from '@pages/NotFound/NotFound';
@@ -17,6 +18,7 @@ export const router = () =>
         <Route path="/auth" element={<Auth />} />
         <Route path="/" element={<Home />} />
         <Route path="/articles" element={<Articles />} />
+        <Route path="/cgu" element={<CGU />} />
         {/** page required authentification */}
         <Route element={<AuthRoute />}>
           <Route path="/my-plants" element={<MyPlants />} />

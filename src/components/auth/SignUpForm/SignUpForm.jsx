@@ -13,7 +13,7 @@ import {
 import { useSnackbarStore } from '@stores/SnackbarStore';
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './SignUpForm.module.scss';
 
 export default function SignUpForm() {
@@ -126,7 +126,10 @@ export default function SignUpForm() {
                   }
                   label={
                     <>
-                      J&apos;ai lu et j&apos;accepte l&apos;utilisations de mes donnée personnel{' '}
+                      J&apos;ai lu et j&apos;accepte{' '}
+                      <Link to="/cgu" className="cguLink">
+                        l&apos;utilisations de mes donnée personnel
+                      </Link>{' '}
                       <span className={error && styles.gdprConsentError}>*</span>
                     </>
                   }
