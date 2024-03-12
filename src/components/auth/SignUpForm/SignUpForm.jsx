@@ -127,7 +127,7 @@ export default function SignUpForm() {
                   label={
                     <>
                       J&apos;ai lu et j&apos;accepte{' '}
-                      <Link to="/cgu" className="cguLink">
+                      <Link to="/cgu" className={styles.cguLink}>
                         l&apos;utilisations de mes donnée personnel
                       </Link>{' '}
                       <span className={error && styles.gdprConsentError}>*</span>
