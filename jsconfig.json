@@ -5,6 +5,8 @@
     "resolveJsonModule": true, // Include modules imported with .json extension
     "isolatedModules": true, // Unconditionally emit imports for unresolved files
     "jsx": "react-jsx", // Will warn if a module can't be correctly interpreted by a single-file transpilation process
+    "module": "commonjs",
+    "target": "es6",
     "baseUrl": ".",
     // Path aliases configuration (don't forget to also configure Vite with these)/
     "paths": {
