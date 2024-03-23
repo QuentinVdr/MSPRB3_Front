@@ -3,32 +3,37 @@ import { ReactQueryProvider } from '@contexts/ReactQueryProvider';
 import { ThemeProvider } from '@emotion/react';
 import AuthProvider from '@hooks/contexts/useAuth';
 import { CssBaseline } from '@mui/material';
-import { router } from '@routes/AppRoutes';
+import { AppRouter } from '@routes/AppRoutes';
 import { theme } from '@styles/theme';
-import { RouterProvider } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 /**
  * Component used to handle the application
  */
 export function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <AuthProvider>
-        <CssBaseline>
-          <ReactQueryProvider>
-            <AppRouter />
-            <AlertSnackbar />
-          </ReactQueryProvider>
-        </CssBaseline>
-      </AuthProvider>
-    </ThemeProvider>
+    <AppProviders>
+      <AppRouter />
+      <AlertSnackbar />
+    </AppProviders>
   );
 }
 
 /**
- * Router provider for the application
- * @returns router provider
+ * Component used to handle all the needed providers in a single component
  */
-function AppRouter() {
-  return <RouterProvider router={router()} />;
-}
+const AppProviders = ({ children }) => {
+  return (
+    <ThemeProvider theme={theme}>
+      <AuthProvider>
+        <CssBaseline>
+          <ReactQueryProvider>{children}</ReactQueryProvider>
+        </CssBaseline>
+      </AuthProvider>
+    </ThemeProvider>
+  );
+};
+
+AppProviders.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.element).isRequired
+};
