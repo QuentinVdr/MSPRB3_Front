@@ -33,6 +33,7 @@ const AppProviders = ({ children }) => {
     </ThemeProvider>
   );
 };
+
 AppProviders.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.arrayOf(PropTypes.element).isRequired
 };
