@@ -5,6 +5,7 @@ import { Button, Checkbox, FormControl, FormControlLabel, Grid, Stack, TextField
 import { useSnackbarStore } from '@stores/SnackbarStore';
 import { usePlantsStore } from '@stores/dataStore/PlantsStore';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 PlantForm.propTypes = {
@@ -18,11 +19,11 @@ export default function PlantForm({ afterValidation, afterCancel, defaultPlant }
   const addPlant = usePlantsStore((state) => state.addPlant);
   const updatePlant = usePlantsStore((state) => state.updatePlant);
   const { showSuccess, showError } = useSnackbarStore();
+
   const { handleSubmit, reset, control, getValues } = useForm({ defaultValues: defaultPlant });
-  const plantFullAddress = `${getValues().address} ${getValues().city} ${getValues().postalCode}`;
+  const [plantFullAddress, setPlantFullAddress] = useState('');
   const { data: addressDetail, refetch: fetchAddressDetail } = useAddressDetailQuery(plantFullAddress, {
-    enabled: false,
-    onSuccess: () => handlePlantSave()
+    enabled: false
   });
 
   const options = {
@@ -31,6 +32,7 @@ export default function PlantForm({ afterValidation, afterCancel, defaultPlant }
   };
 
   const onSubmitPlant = () => {
+    setPlantFullAddress([getValues().address, getValues().postalCode, getValues().city].join(' '));
     fetchAddressDetail()
       .then(() => {
         handlePlantSave();
