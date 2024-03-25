@@ -35,5 +35,5 @@ const AppProviders = ({ children }) => {
 };
 
 AppProviders.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element).isRequired
+  children: PropTypes.node.isRequired
 };
