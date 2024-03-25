@@ -25,11 +25,11 @@ export function App() {
 const AppProviders = ({ children }) => {
   return (
     <ThemeProvider theme={theme}>
-      <AuthProvider>
-        <CssBaseline>
-          <ReactQueryProvider>{children}</ReactQueryProvider>
-        </CssBaseline>
-      </AuthProvider>
+      <CssBaseline>
+        <ReactQueryProvider>
+          <AuthProvider>{children}</AuthProvider>
+        </ReactQueryProvider>
+      </CssBaseline>
     </ThemeProvider>
   );
 };
