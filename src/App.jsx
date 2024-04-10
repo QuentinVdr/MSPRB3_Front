@@ -25,15 +25,15 @@ export function App() {
 const AppProviders = ({ children }) => {
   return (
     <ThemeProvider theme={theme}>
-      <AuthProvider>
-        <CssBaseline>
-          <ReactQueryProvider>{children}</ReactQueryProvider>
-        </CssBaseline>
-      </AuthProvider>
+      <CssBaseline>
+        <ReactQueryProvider>
+          <AuthProvider>{children}</AuthProvider>
+        </ReactQueryProvider>
+      </CssBaseline>
     </ThemeProvider>
   );
 };
 
 AppProviders.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.element).isRequired
+  children: PropTypes.node.isRequired
 };

@@ -4,7 +4,9 @@ import { useAddressDetailQuery } from '@hooks/reactQuery/queries/useAddressQueri
 import { Button, Checkbox, FormControl, FormControlLabel, Grid, Stack, TextField, Typography } from '@mui/material';
 import { useSnackbarStore } from '@stores/SnackbarStore';
 import { usePlantsStore } from '@stores/dataStore/PlantsStore';
+import { Strings } from '@utils/StringUtils';
 import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 PlantForm.propTypes = {
@@ -17,13 +19,19 @@ export default function PlantForm({ afterValidation, afterCancel, defaultPlant }
   const { user } = useAuth();
   const addPlant = usePlantsStore((state) => state.addPlant);
   const updatePlant = usePlantsStore((state) => state.updatePlant);
-  const { showSuccess, showError } = useSnackbarStore();
+  const { showSuccess } = useSnackbarStore();
+
   const { handleSubmit, reset, control, getValues } = useForm({ defaultValues: defaultPlant });
-  const plantFullAddress = `${getValues().address} ${getValues().city} ${getValues().postalCode}`;
-  const { data: addressDetail, refetch: fetchAddressDetail } = useAddressDetailQuery(plantFullAddress, {
-    enabled: false,
-    onSuccess: () => handlePlantSave()
+  const [plantFullAddress, setPlantFullAddress] = useState('');
+  const { data: addressDetail } = useAddressDetailQuery(plantFullAddress, {
+    enabled: Strings.isNotBlank(plantFullAddress)
   });
+
+  useEffect(() => {
+    if (addressDetail?.features[0]?.properties) {
+      handlePlantSave();
+    }
+  }, [addressDetail]);
 
   const options = {
     apiKey: import.meta.env.VITE_API_FILES_BUCKET_KEY,
@@ -31,13 +39,7 @@ export default function PlantForm({ afterValidation, afterCancel, defaultPlant }
   };
 
   const onSubmitPlant = () => {
-    fetchAddressDetail()
-      .then(() => {
-        handlePlantSave();
-      })
-      .catch(() => {
-        showError({ message: "Une erreurs c'est produit lors de la récupération des détails de l'adresse" });
-      });
+    setPlantFullAddress(`${getValues().address} ${getValues().postalCode} ${getValues().city}`);
   };
 
   const handlePlantSave = () => {
@@ -48,7 +50,6 @@ export default function PlantForm({ afterValidation, afterCancel, defaultPlant }
       longitude: lon,
       owner: user
     };
-    console.log('🚀 ~ handlePlantSave ~ plant:', plant);
     defaultPlant ? updatePlant({ ...plant, id: defaultPlant.id }) : addPlant(plant);
     showSuccess({ message: 'Plante créer avec succès' });
     afterValidation();

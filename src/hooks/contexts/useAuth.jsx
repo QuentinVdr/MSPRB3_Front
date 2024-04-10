@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { createContext, useContext, useState } from 'react';
 
 AuthProvider.propTypes = {
-  children: PropTypes.element.isRequired
+  children: PropTypes.node.isRequired
 };
 
 /**

@@ -9,6 +9,7 @@ on:
 
 jobs:
   LintBuild:
+    # use of ubuntu-latest is the recommandation from GitHub documentation
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Checkout repo
