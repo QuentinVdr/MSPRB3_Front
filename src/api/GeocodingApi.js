@@ -1,4 +1,4 @@
-import { GeocodeClient } from './GeocodeClient';
+import { GeocodeClient } from './client/GeocodeClient';
 
 const geocodeBaseUrl = '/geocode';
 

@@ -14,3 +14,9 @@ export const addressQKey = {
   mainKey: 'address',
   detail: (address) => [addressQKey.mainKey, 'detail', address]
 };
+
+/** ImgBB */
+export const imgBBQKey = {
+  mainKey: 'imgBB',
+  detail: (imgBB) => [imgBBQKey.mainKey, 'detail', imgBB]
+};
