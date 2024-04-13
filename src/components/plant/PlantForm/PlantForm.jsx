@@ -2,7 +2,17 @@ import { useAuth } from '@hooks/contexts/useAuth';
 import { useUploadImageMutation } from '@hooks/reactQuery/mutation/useImgBBMutations';
 import { useAddressDetailQuery } from '@hooks/reactQuery/queries/useAddressQueries';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { Button, Checkbox, FormControl, FormControlLabel, Grid, Stack, TextField, Typography } from '@mui/material';
+import {
+  Badge,
+  Button,
+  Checkbox,
+  FormControl,
+  FormControlLabel,
+  Grid,
+  Stack,
+  TextField,
+  Typography
+} from '@mui/material';
 import { useSnackbarStore } from '@stores/SnackbarStore';
 import { usePlantsStore } from '@stores/dataStore/PlantsStore';
 import { Strings } from '@utils/StringUtils';
@@ -148,28 +158,32 @@ export default function PlantForm({ afterValidation, afterCancel, defaultPlant }
               />
             )}
           />
-          <Controller
-            name="images"
-            control={control}
-            render={({ field: { onChange } }) => (
-              <Button
-                component="label"
-                role={undefined}
-                variant="contained"
-                tabIndex={-1}
-                startIcon={<CloudUploadIcon />}
-              >
-                Upload file
-                <input
-                  type="file"
-                  hidden
-                  onChange={(event) => {
-                    onChange(event.target.files[0]);
-                  }}
-                />
-              </Button>
-            )}
-          />
+          <Stack alignItems="center">
+            <Controller
+              name="images"
+              control={control}
+              render={({ field: { onChange, ...field } }) => (
+                <Badge badgeContent={field.value.length} color="primary">
+                  <Button
+                    component="label"
+                    role={undefined}
+                    variant="contained"
+                    tabIndex={-1}
+                    startIcon={<CloudUploadIcon />}
+                  >
+                    Upload file
+                    <input
+                      type="file"
+                      hidden
+                      onChange={(event) => {
+                        onChange(event.target.files[0]);
+                      }}
+                    />
+                  </Button>
+                </Badge>
+              )}
+            />
+          </Stack>
         </Stack>
       </FormControl>
 
