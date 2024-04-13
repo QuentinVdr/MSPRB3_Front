@@ -1,6 +1,7 @@
-import { UploadButton } from '@bytescale/upload-widget-react';
 import { useAuth } from '@hooks/contexts/useAuth';
+import { useUploadImageMutation } from '@hooks/reactQuery/mutation/useImgBBMutations';
 import { useAddressDetailQuery } from '@hooks/reactQuery/queries/useAddressQueries';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { Button, Checkbox, FormControl, FormControlLabel, Grid, Stack, TextField, Typography } from '@mui/material';
 import { useSnackbarStore } from '@stores/SnackbarStore';
 import { usePlantsStore } from '@stores/dataStore/PlantsStore';
@@ -22,6 +23,7 @@ export default function PlantForm({ afterValidation, afterCancel, defaultPlant }
   const { showSuccess } = useSnackbarStore();
 
   const { handleSubmit, reset, control, getValues } = useForm({ defaultValues: defaultPlant });
+  const { mutateAsync: uploadImage } = useUploadImageMutation();
   const [plantFullAddress, setPlantFullAddress] = useState('');
   const { data: addressDetail } = useAddressDetailQuery(plantFullAddress, {
     enabled: Strings.isNotBlank(plantFullAddress)
@@ -33,19 +35,16 @@ export default function PlantForm({ afterValidation, afterCancel, defaultPlant }
     }
   }, [addressDetail]);
 
-  const options = {
-    apiKey: import.meta.env.VITE_API_FILES_BUCKET_KEY,
-    maxFileCount: 5
-  };
-
   const onSubmitPlant = () => {
     setPlantFullAddress(`${getValues().address} ${getValues().postalCode} ${getValues().city}`);
   };
 
-  const handlePlantSave = () => {
+  const handlePlantSave = async () => {
+    const imagesData = await uploadImage(getValues().images);
     const { lat, lon } = addressDetail.features[0].properties;
     const plant = {
       ...getValues(),
+      images: [imagesData.data.url],
       latitude: lat,
       longitude: lon,
       owner: user
@@ -153,13 +152,22 @@ export default function PlantForm({ afterValidation, afterCancel, defaultPlant }
             name="images"
             control={control}
             render={({ field: { onChange } }) => (
-              <UploadButton options={options} onComplete={(files) => onChange(files.map((x) => x.fileUrl))}>
-                {({ onClick }) => (
-                  <Button onClick={onClick} variant="outlined">
-                    Ajouter des images
-                  </Button>
-                )}
-              </UploadButton>
+              <Button
+                component="label"
+                role={undefined}
+                variant="contained"
+                tabIndex={-1}
+                startIcon={<CloudUploadIcon />}
+              >
+                Upload file
+                <input
+                  type="file"
+                  hidden
+                  onChange={(event) => {
+                    onChange(event.target.files[0]);
+                  }}
+                />
+              </Button>
             )}
           />
         </Stack>
