@@ -4,7 +4,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { Button, Grid, IconButton, Modal, Stack, Typography } from '@mui/material';
 import { useSnackbarStore } from '@stores/SnackbarStore';
-import { usePlantsStore } from '@stores/dataStore/PlantsStore';
+import { defaultValuePlant, usePlantsStore } from '@stores/dataStore/PlantsStore';
 import { useState } from 'react';
 import styles from './MyPlants.module.scss';
 
@@ -126,7 +126,11 @@ export default function MyPlant() {
       </Stack>
       <Modal open={isPlantFormOpen} onClose={handleClose} className={styles.plantFormModal}>
         <Stack gap={3} className={styles.plantFormCard}>
-          <PlantForm afterValidation={handleClose} afterCancel={handleClose} defaultPlant={selectedPlantUpdate} />
+          <PlantForm
+            afterValidation={handleClose}
+            afterCancel={handleClose}
+            defaultPlant={selectedPlantUpdate || defaultValuePlant}
+          />
         </Stack>
       </Modal>
     </>

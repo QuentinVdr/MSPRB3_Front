@@ -1,6 +1,17 @@
 import { create } from 'zustand';
 import { botanistUser, casualUser, casualUser2 } from './User';
 
+export const defaultValuePlant = {
+  name: '',
+  description: '',
+  address: '',
+  city: '',
+  postalCode: '',
+  isNeedingCare: false,
+  isNeedingTips: false,
+  images: []
+};
+
 const defaultPlants = [
   {
     id: 1,
