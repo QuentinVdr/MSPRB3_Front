@@ -1,4 +1,4 @@
-import { ImgBBClient } from './client/ImgBBClient';
+import { ImgBBClient } from '@api/client/ImgBBClient';
 
 const imageUploadUrl = '/upload';
 

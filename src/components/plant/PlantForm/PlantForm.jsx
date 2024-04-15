@@ -1,5 +1,5 @@
 import { useAuth } from '@hooks/contexts/useAuth';
-import { useUploadImageMutation } from '@hooks/reactQuery/mutation/useImgBBMutations';
+import { useUploadImagesMutation } from '@hooks/reactQuery/mutation/useImgBBMutations';
 import { useAddressDetailQuery } from '@hooks/reactQuery/queries/useAddressQueries';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import {
@@ -33,7 +33,7 @@ export default function PlantForm({ afterValidation, afterCancel, defaultPlant }
   const { showSuccess } = useSnackbarStore();
 
   const { handleSubmit, reset, control, getValues } = useForm({ defaultValues: defaultPlant });
-  const { mutateAsync: uploadImage } = useUploadImageMutation();
+  const { mutateAsync: uploadImage } = useUploadImagesMutation();
   const [plantFullAddress, setPlantFullAddress] = useState('');
   const { data: addressDetail } = useAddressDetailQuery(plantFullAddress, {
     enabled: Strings.isNotBlank(plantFullAddress)
@@ -49,12 +49,17 @@ export default function PlantForm({ afterValidation, afterCancel, defaultPlant }
     setPlantFullAddress(`${getValues().address} ${getValues().postalCode} ${getValues().city}`);
   };
 
+  const handleImageUpload = async () => {
+    const images = Object.values(getValues().images);
+    const imagesData = images ? await uploadImage(images) : [];
+    return imagesData.map((imageData) => imageData.data.url);
+  };
+
   const handlePlantSave = async () => {
-    const imagesData = await uploadImage(getValues().images);
     const { lat, lon } = addressDetail.features[0].properties;
     const plant = {
       ...getValues(),
-      images: [imagesData.data.url],
+      images: await handleImageUpload(),
       latitude: lat,
       longitude: lon,
       owner: user
@@ -161,9 +166,10 @@ export default function PlantForm({ afterValidation, afterCancel, defaultPlant }
           <Stack alignItems="center">
             <Controller
               name="images"
+              defaultValue={[]}
               control={control}
               render={({ field: { onChange, ...field } }) => (
-                <Badge badgeContent={field.value.length} color="primary">
+                <Badge badgeContent={field.value?.length} color="primary">
                   <Button
                     component="label"
                     role={undefined}
@@ -175,8 +181,9 @@ export default function PlantForm({ afterValidation, afterCancel, defaultPlant }
                     <input
                       type="file"
                       hidden
+                      multiple
                       onChange={(event) => {
-                        onChange(event.target.files[0]);
+                        onChange(event.target.files);
                       }}
                     />
                   </Button>
