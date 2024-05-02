@@ -1,3 +1,5 @@
+import { create } from 'zustand';
+
 export const botanistUser = {
   id: 1,
   firstName: 'user',
@@ -34,4 +36,13 @@ export const casualUser2 = {
   isBotanist: false
 };
 
-export const users = [botanistUser, botanistUser2, casualUser, casualUser2];
+export const defaultUsers = [botanistUser, botanistUser2, casualUser, casualUser2];
+
+export const useUsersStore = create((set, get) => ({
+  users: defaultUsers,
+  getById: (userId) => get().users.find((user) => user.id === userId),
+  addUser: (newUser) => set((state) => ({ users: [...state.users, newUser] })),
+  updateUser: (updatedUser) =>
+    set((state) => ({ users: state.users.map((user) => (user.id === updatedUser.id ? updatedUser : user)) })),
+  removeUser: (id) => set((state) => ({ users: state.users.filter((user) => user.id !== id) }))
+}));

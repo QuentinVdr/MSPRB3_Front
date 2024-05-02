@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { botanistUser, casualUser, casualUser2 } from './User';
+import { botanistUser, casualUser, casualUser2 } from './UserStore';
 
 export const defaultValuePlant = {
   name: '',

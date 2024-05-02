@@ -2,7 +2,7 @@ import { useAuth } from '@hooks/contexts/useAuth';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Button, FormControl, IconButton, InputAdornment, Stack, TextField } from '@mui/material';
 import { useSnackbarStore } from '@stores/SnackbarStore';
-import { users } from '@stores/dataStore/User';
+import { defaultUsers } from '@stores/dataStore/UserStore';
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -16,7 +16,7 @@ export default function SignInForm() {
 
   const onSubmitLogin = ({ mail, password }) => {
     let isLog = false;
-    users.forEach((user) => {
+    defaultUsers.forEach((user) => {
       if (mail === user.mail && password === user.password) {
         isLog = true;
         login(user);

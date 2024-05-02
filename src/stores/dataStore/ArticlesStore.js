@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { botanistUser, botanistUser2 } from './User';
+import { botanistUser, botanistUser2 } from './UserStore';
 
 const defaultArticles = [
   {

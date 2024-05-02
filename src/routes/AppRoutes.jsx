@@ -1,6 +1,7 @@
 import Articles from '@pages/Articles/Articles';
 import Auth from '@pages/Auth/Auth';
 import CGU from '@pages/CGU/CGU';
+import Chat from '@pages/Chat/Chat';
 import Home from '@pages/Home/Home';
 import MyPlants from '@pages/MyPlants/MyPlants';
 import { NotFound } from '@pages/NotFound/NotFound';
@@ -23,6 +24,7 @@ export const AppRouter = () => (
           {/** page required authentification */}
           <Route element={<AuthRoute />}>
             <Route path="/my-plants" element={<MyPlants />} />
+            <Route path="/chat" element={<Chat />} />
           </Route>
           <Route path="/not-found" element={<NotFound />} />
           {/** Unknown path redirection */}
