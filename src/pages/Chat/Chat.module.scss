@@ -1,0 +1,14 @@
+@use '@styles/variables.module.scss';
+
+.chatPage {
+  height: variables.$app-min-height;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  padding-bottom: 2rem;
+
+  .input {
+    width: 100%;
+    margin-top: auto;
+  }
+}
