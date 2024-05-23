@@ -1,3 +1,4 @@
+@use '@styles/colors.module.scss';
 @use '@styles/variables.module.scss';
 
 .chatPage {
@@ -6,6 +7,18 @@
   margin: 0 auto;
   padding: 0 2rem;
   padding-bottom: 2rem;
+
+  .chat {
+    overflow: auto;
+    height: 70vh;
+  }
+
+  .message {
+    background-color: colors.$white-background;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    padding: 0.5rem 1rem;
+  }
 
   .input {
     width: 100%;

@@ -9,6 +9,12 @@ export const exempleQKey = {
   detail: (id) => [exempleQKey.mainKey, 'detail', id]
 };
 
+/** Messages */
+export const messagesQKey = {
+  mainKey: 'messages',
+  withUser: (userId, otherId) => [messagesQKey.mainKey, 'detail', [userId, otherId]]
+};
+
 /** Geocoging address */
 export const addressQKey = {
   mainKey: 'address',

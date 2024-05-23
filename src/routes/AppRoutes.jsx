@@ -24,7 +24,7 @@ export const AppRouter = () => (
           {/** page required authentification */}
           <Route element={<AuthRoute />}>
             <Route path="/my-plants" element={<MyPlants />} />
-            <Route path="/chat" element={<Chat />} />
+            <Route path="/chat/:otherUserId" element={<Chat />} />
           </Route>
           <Route path="/not-found" element={<NotFound />} />
           {/** Unknown path redirection */}
