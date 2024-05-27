@@ -5,7 +5,7 @@ import SendIcon from '@mui/icons-material/Send';
 import { Grid, IconButton, InputAdornment, Stack, TextField, Typography } from '@mui/material';
 import { useUsersStore } from '@stores/dataStore/UserStore';
 import { Strings } from '@utils/StringUtils';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './Chat.module.scss';
 
@@ -13,10 +13,16 @@ export default function Chat() {
   const { user } = useAuth();
   const { otherUserId } = useParams();
   const otherUser = useUsersStore((state) => state.getById(parseInt(otherUserId)));
-  const { data: messages, isLoading } = useMessagesQuery(user.id, otherUserId);
-  console.log('🚀 ~ Chat ~ messages:', messages);
+  const { data: messages, isLoading, refetch } = useMessagesQuery(user?.id, otherUserId);
   const [message, setMessage] = useState('');
   const postMessage = usePostMessagesMutation();
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      refetch();
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [refetch]);
 
   const handleSendMessage = () => {
     if (Strings.isBlank(message)) return null;

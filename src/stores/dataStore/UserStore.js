@@ -29,10 +29,10 @@ export const casualUser = {
 
 export const casualUser2 = {
   id: 11,
-  firstName: 'userZ',
+  firstName: 'user2',
   lastName: 'casual',
-  mail: 'userZ@mail.com',
-  password: 'user',
+  mail: 'user2@mail.com',
+  password: 'user2',
   isBotanist: false
 };
 

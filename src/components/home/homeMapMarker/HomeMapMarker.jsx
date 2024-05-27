@@ -1,3 +1,5 @@
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import { IconButton, Stack } from '@mui/material';
 import L from 'leaflet';
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
@@ -5,10 +7,11 @@ import { Marker, Popup, useMap } from 'react-leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
 
 HomeMapMarker.propTypes = {
-  plantes: PropTypes.array.isRequired
+  plants: PropTypes.array.isRequired,
+  openDetail: PropTypes.func.isRequired
 };
 
-export default function HomeMapMarker({ plantes }) {
+export default function HomeMapMarker({ plants, openDetail }) {
   const mapRef = useMap();
 
   useEffect(() => {
@@ -18,7 +21,7 @@ export default function HomeMapMarker({ plantes }) {
   const mapBounds = () => {
     let markerBounds = mapRef.getBounds();
 
-    plantes.forEach((marker) => {
+    plants.forEach((marker) => {
       markerBounds.extend([marker.latitude, marker.longitude]);
     });
 
@@ -27,9 +30,16 @@ export default function HomeMapMarker({ plantes }) {
 
   return (
     <MarkerClusterGroup chunkedLoading maxClusterRadius={50}>
-      {plantes.map((plante) => (
-        <Marker position={L.latLng(plante.latitude, plante.longitude)} key={plante.id}>
-          <Popup>{plante.name}</Popup>
+      {plants.map((plant) => (
+        <Marker position={L.latLng(plant.latitude, plant.longitude)} key={plant.id}>
+          <Popup>
+            <Stack direction="row" justifyContent="space-between" alignItems="center">
+              {plant.name}
+              <IconButton onClick={() => openDetail(plant)}>
+                <VisibilityIcon />
+              </IconButton>
+            </Stack>
+          </Popup>
         </Marker>
       ))}
     </MarkerClusterGroup>
