@@ -1,0 +1,23 @@
+@use '@styles/colors.module.scss';
+@use '@styles/variables.module.scss';
+
+.discussionsPage {
+  height: variables.$app-min-height;
+  max-width: 800px;
+  margin: 1rem auto;
+  padding: 0 2rem;
+  padding-bottom: 2rem;
+
+  .discussionCard {
+    background-color: colors.$white-background;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    padding: 1.5rem 2rem;
+
+    .discussionLink {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+  }
+}
