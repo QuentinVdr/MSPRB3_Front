@@ -23,10 +23,6 @@ export default function Navbar() {
     setAnchorEl(null);
   };
 
-  const handleCGUClick = () => {
-    navigate('/cgu');
-  };
-
   const handleLogout = () => {
     logout();
     handleCloseMenu();
@@ -46,15 +42,20 @@ export default function Navbar() {
           {!isSm && <Typography variant="h1">Arosa&apos;je</Typography>}
         </Link>
         {isAuthenticated() && (
-          <Link to="/my-plants">
-            <Typography variant="body1">Mes Plantes</Typography>
-          </Link>
+          <>
+            <Link to="/my-plants">
+              <Typography variant="body1">Mes Plantes</Typography>
+            </Link>
+            <Link to="/discussions">
+              <Typography variant="body1">Mes Discussions</Typography>
+            </Link>
+          </>
         )}
         <Link to="/articles">
           <Typography variant="body1">Articles</Typography>
         </Link>
         <div className={styles.userMenu}>
-          <IconButton size="large" aria-label="go to cgu" onClick={handleCGUClick} color="inherit">
+          <IconButton size="large" aria-label="go to cgu" onClick={() => navigate('/cgu')} color="inherit">
             <InfoIcon />
           </IconButton>
           <IconButton
