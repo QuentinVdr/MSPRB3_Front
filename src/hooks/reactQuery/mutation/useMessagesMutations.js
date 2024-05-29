@@ -1,5 +1,5 @@
-import { sendMessage } from '@api/MessagesApi';
-import { messagesQKey } from '@stores/ReactQueryKEYS';
+import { sendMessage } from '@api/DiscussionsApi';
+import { discussionsQKey } from '@stores/ReactQueryKEYS';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const usePostMessagesMutation = () => {
@@ -8,7 +8,7 @@ export const usePostMessagesMutation = () => {
   return useMutation({
     mutationFn: (message) => sendMessage(message),
     onSuccess: (savedMessage) => {
-      queryClient.setQueryData(messagesQKey.withUser(savedMessage.id), savedMessage);
+      queryClient.setQueryData(discussionsQKey.ofUser(savedMessage.id), savedMessage);
     }
   });
 };

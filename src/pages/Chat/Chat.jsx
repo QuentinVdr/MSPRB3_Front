@@ -1,6 +1,6 @@
 import { useAuth } from '@hooks/contexts/useAuth';
 import { usePostMessagesMutation } from '@hooks/reactQuery/mutation/useMessagesMutations';
-import { useMessagesQuery } from '@hooks/reactQuery/queries/useMessagesQueries';
+import { useDiscussionsBetweenUsersQuery } from '@hooks/reactQuery/queries/useDiscussionsQueries';
 import SendIcon from '@mui/icons-material/Send';
 import { Grid, IconButton, InputAdornment, Stack, TextField, Typography } from '@mui/material';
 import { useUsersStore } from '@stores/dataStore/UserStore';
@@ -13,7 +13,7 @@ export default function Chat() {
   const { user } = useAuth();
   const { otherUserId } = useParams();
   const otherUser = useUsersStore((state) => state.getById(parseInt(otherUserId)));
-  const { data: messages, isLoading, refetch } = useMessagesQuery(user?.id, otherUserId);
+  const { data: discussion, isLoading, refetch } = useDiscussionsBetweenUsersQuery(user?.id, otherUserId);
   const [message, setMessage] = useState('');
   const postMessage = usePostMessagesMutation();
 
@@ -27,13 +27,13 @@ export default function Chat() {
   const handleSendMessage = () => {
     if (Strings.isBlank(message)) return null;
     postMessage.mutateAsync({
-      id: undefined,
       content: message,
       datetime: new Date(),
       sender: user,
-      receiver: otherUser
+      discussionId: discussion.id
     });
     setMessage('');
+    refetch();
   };
 
   return (
@@ -45,7 +45,7 @@ export default function Chat() {
         {isLoading ? (
           <Typography variant="body1">Chargement...</Typography>
         ) : (
-          messages.map((message) => (
+          discussion?.messages?.map((message) => (
             <Stack key={message.id} className={styles.message}>
               <Typography variant="body2">
                 {message.sender.firstName} {message.sender.lastName}
