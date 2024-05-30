@@ -77,3 +77,32 @@ Map :
 
 - [Leaflet](https://leafletjs.com/) → Librairie de cartographie interactive
 - [React-Leaflet](https://react-leaflet.js.org/) → Wrapper de Leaflet pour React
+
+## Architecture du projet
+
+```mermaid
+
+flowchart LR
+
+u(User)
+
+subgraph "Application"
+  f[web application
+  mobile application]
+end
+
+subgraph "server"
+  b[application backend]
+end
+
+subgraph "server externe"
+  g[geoapify]
+  i[imgbb]
+end
+
+u <--> f
+f <--> b
+f <--> g
+f <--> i
+
+```
