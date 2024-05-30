@@ -41,7 +41,7 @@ Ce projet suit une structure spécifique pour l'organisation et la facilité de 
 
 ## Librairies
 
-### Stack de Technologie utilisé:
+### Stack de Technologie utilisé
 
 - Library/Framework JS : [React](https://reactjs.org/)
 - Language : [JavaScript](https://developer.mozilla.org/fr/docs/Web/JavaScript)
@@ -49,7 +49,7 @@ Ce projet suit une structure spécifique pour l'organisation et la facilité de 
 - Builder : [Vite](https://vitejs.dev/)
 - Linter/Code formatter : [EsLint](https://eslint.org/) / [Prettier](https://prettier.io/)
 
-#### Librairie Majeur :
+#### Librairie Majeur
 
 Gestionnaire des Data :
 
