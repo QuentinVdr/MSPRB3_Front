@@ -12,7 +12,7 @@ PlantDetail.propTypes = {
 };
 
 export default function PlantDetail({ isPlantDetailOpen, handleClose, plant }) {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
 
   return (
     <Modal open={isPlantDetailOpen} onClose={handleClose} className={styles.plantDetailModal}>
@@ -24,7 +24,7 @@ export default function PlantDetail({ isPlantDetailOpen, handleClose, plant }) {
             <img key={image} src={image} alt={`the plant ${plant?.name} ${index}`} className={styles.plantImage} />
           ))}
         </Stack>
-        {isAuthenticated() && (
+        {isAuthenticated() && user.id !== plant?.owner.id && (
           <Typography variant="body1">
             <Link to={`chat/${plant?.owner.id}`}>
               <Stack direction="row" alignItems="center" gap={1}>
